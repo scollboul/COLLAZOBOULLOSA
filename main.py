@@ -66,6 +66,7 @@ class Main(QtWidgets.QMainWindow):
         módulos del principal
         '''
         conexion.Conexion.db_connect(var.filedb)
+        conexion.Conexion.cargarCliente()
     def closeEvent(self, event):
         if event:
             events.Eventos.Salir(event)
