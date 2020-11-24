@@ -45,6 +45,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
+        var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaClientes)
@@ -61,12 +63,11 @@ class Main(QtWidgets.QMainWindow):
         Llamada a módulos iniciales
         '''
         events.Eventos.cargarProv()
-
+        conexion.Conexion.mostrarClientes(self)
         '''
         módulos del principal
         '''
         conexion.Conexion.db_connect(var.filedb)
-        conexion.Conexion.cargarCliente()
     def closeEvent(self, event):
         if event:
             events.Eventos.Salir(event)

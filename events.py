@@ -40,3 +40,8 @@ class Eventos():
 
         except Exception as error:
             print('Error: %s' % str(error))
+    def Backup():
+        try:
+            print("Hara una copia de seguridad")
+        except Exception as error:
+            print('Error: %s' % str(error))
