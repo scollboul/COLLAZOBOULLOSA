@@ -862,6 +862,7 @@
    <addaction name="ToolBarBackup"/>
    <addaction name="separator"/>
    <addaction name="ToolbarSalir"/>
+   <addaction name="ToolBarAbrirDir"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -906,9 +907,22 @@
     <string>Alt+S</string>
    </property>
   </action>
+  <action name="ToolBarAbrirDir">
+   <property name="icon">
+    <iconset resource="img/toolabrirDir.qrc">
+     <normaloff>:/abrirdir/abrirDir.png</normaloff>:/abrirdir/abrirDir.png</iconset>
+   </property>
+   <property name="text">
+    <string>AbrirDir</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/abrirdir/abrirDir.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img/logo.qrc"/>
+  <include location="img/toolabrirDir.qrc"/>
   <include location="img/reload.qrc"/>
   <include location="img/Buscar.qrc"/>
   <include location="img/toolbarbackup.qrc"/>

@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="abrirdir">
+    <file>abrirDir.png</file>
+  </qresource>
+</RCC>

@@ -462,11 +462,17 @@ class Ui_venPrincipal(object):
         icon4.addPixmap(QtGui.QPixmap(":/Salir/iconsalir.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ToolbarSalir.setIcon(icon4)
         self.ToolbarSalir.setObjectName("ToolbarSalir")
+        self.ToolBarAbrirDir = QtWidgets.QAction(venPrincipal)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/abrirdir/abrirDir.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ToolBarAbrirDir.setIcon(icon5)
+        self.ToolBarAbrirDir.setObjectName("ToolBarAbrirDir")
         self.menuArchivo.addAction(self.actionSalir)
         self.menuBar.addAction(self.menuArchivo.menuAction())
         self.toolBar.addAction(self.ToolBarBackup)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.ToolbarSalir)
+        self.toolBar.addAction(self.ToolBarAbrirDir)
 
         self.retranslateUi(venPrincipal)
         self.tabWidget.setCurrentIndex(0)
@@ -514,8 +520,11 @@ class Ui_venPrincipal(object):
         self.ToolbarSalir.setText(_translate("venPrincipal", "Salir"))
         self.ToolbarSalir.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/Salir/iconsalir.png\"/></p></body></html>"))
         self.ToolbarSalir.setShortcut(_translate("venPrincipal", "Alt+S"))
+        self.ToolBarAbrirDir.setText(_translate("venPrincipal", "AbrirDir"))
+        self.ToolBarAbrirDir.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/abrirdir/abrirDir.png\"/></p></body></html>"))
 import Buscar_rc
 import logo_rc
 import reload_rc
+import toolabrirDir_rc
 import toolbarbackup_rc
 import toolbarsalir_rc
