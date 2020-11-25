@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Buscar">
+    <file>Buscar.png</file>
+  </qresource>
+</RCC>

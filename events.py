@@ -19,16 +19,9 @@ class Eventos():
         except Exception as error:
             print('Error %s' % str(error))
 
-    def closeSalir(event):
-        try:
-            if var.dlgsalir.exec_():
-                print(event)
-                var.dlgsalir.hide()
-               #necesario para que ignore X de la ventana
-        except Exception as error:
-            print('Error %s' % str(error))
 
-    def cargarProv():
+
+    def cargarProv(self):
         """
         carga las provincias al iniciar el programa
         :return:
@@ -40,8 +33,9 @@ class Eventos():
 
         except Exception as error:
             print('Error: %s' % str(error))
-    def Backup():
+
+    def Backup(self):
         try:
-            print("Hara una copia de seguridad")
+            print('hará copia de seguidad de la BBDD')
         except Exception as error:
             print('Error: %s' % str(error))

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dlgSalir</class>
- <widget class="QDialog" name="dlgSalir">
+ <class>dlgsalir</class>
+ <widget class="QDialog" name="dlgsalir">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>376</width>
-    <height>150</height>
+    <height>154</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -88,7 +88,7 @@
   <connection>
    <sender>btnBoxSalir</sender>
    <signal>accepted()</signal>
-   <receiver>dlgSalir</receiver>
+   <receiver>dlgsalir</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -104,7 +104,7 @@
   <connection>
    <sender>btnBoxSalir</sender>
    <signal>rejected()</signal>
-   <receiver>dlgSalir</receiver>
+   <receiver>dlgsalir</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

@@ -7,7 +7,7 @@ import sys, var, events, clients, conexion
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
         super(DialogSalir, self).__init__()
-        var.dlgsalir = Ui_dlgSalir()
+        var.dlgsalir= Ui_dlgsalir()
         var.dlgsalir.setupUi(self)
         var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
         #var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
@@ -23,7 +23,6 @@ class DialogCalendar(QtWidgets.QDialog):
         anoactual = datetime.now().year
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
-
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -32,45 +31,61 @@ class Main(QtWidgets.QMainWindow):
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
 
+
         '''
         colección de datos
         '''
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
         var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
-
         '''
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
+        botones formulario cliente
         '''
-
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
-        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
+
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
         var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
+        #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
-        var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaClientes)
+        var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
+        var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCliente)
+        var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
+        var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
+        var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
+        clients.Clientes.valoresSpin()
+
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
-             i.stateChanged.connect(clients.Clientes.selPago)
+            i.stateChanged.connect(clients.Clientes.selPago)
+
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        events.Eventos.cargarProv(self)
+        '''var.ui.addPermanentWidget(var.ui.lblstatus, 1)
+        var.ui.statusbar.addPermanentWidget(var.ui.lblstatusdate, 2)
+        var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
+        var.ui.lblstatus.setText('Bienvenido a 2º DAM')
+        fecha = datetime.today()
+        var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
+        var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))'''
 
         '''
-        Llamada a módulos iniciales
+        módulos conexion base datos
         '''
-        events.Eventos.cargarProv()
+
+        conexion.Conexion.db_connect(var.filebd)
+        # conexion.Conexion()
         conexion.Conexion.mostrarClientes(self)
-        '''
-        módulos del principal
-        '''
-        conexion.Conexion.db_connect(var.filedb)
+
     def closeEvent(self, event):
         if event:
             events.Eventos.Salir(event)
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
