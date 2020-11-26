@@ -3,10 +3,10 @@ global ui
 global rbtsex
 global chkpago
 #las dos siguientes son ventanas dialogo
-global dlgsalir
+global dlgaviso
 global dlgcalendar
 global filedlgabrir
-global staus
+global dlgimprimir
 '''
 variables de clientes
 '''

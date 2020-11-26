@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_venPrincipal(object):
     def setupUi(self, venPrincipal):
         venPrincipal.setObjectName("venPrincipal")
-        venPrincipal.resize(1278, 1010)
+        venPrincipal.resize(1278, 1012)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -450,6 +450,9 @@ class Ui_venPrincipal(object):
         self.statusBar.setEnabled(True)
         self.statusBar.setObjectName("statusBar")
         venPrincipal.setStatusBar(self.statusBar)
+        self.toolBar_2 = QtWidgets.QToolBar(venPrincipal)
+        self.toolBar_2.setObjectName("toolBar_2")
+        venPrincipal.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_2)
         self.actionSalir = QtWidgets.QAction(venPrincipal)
         self.actionSalir.setObjectName("actionSalir")
         self.ToolBarBackup = QtWidgets.QAction(venPrincipal)
@@ -467,12 +470,18 @@ class Ui_venPrincipal(object):
         icon5.addPixmap(QtGui.QPixmap(":/abrirdir/abrirDir.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ToolBarAbrirDir.setIcon(icon5)
         self.ToolBarAbrirDir.setObjectName("ToolBarAbrirDir")
+        self.actionImprimir = QtWidgets.QAction(venPrincipal)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/Imprimir/printer.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionImprimir.setIcon(icon6)
+        self.actionImprimir.setObjectName("actionImprimir")
         self.menuArchivo.addAction(self.actionSalir)
         self.menuBar.addAction(self.menuArchivo.menuAction())
-        self.toolBar.addAction(self.ToolBarBackup)
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.ToolbarSalir)
         self.toolBar.addAction(self.ToolBarAbrirDir)
+        self.toolBar.addAction(self.actionImprimir)
+        self.toolBar.addAction(self.ToolBarBackup)
+        self.toolBar_2.addAction(self.ToolbarSalir)
 
         self.retranslateUi(venPrincipal)
         self.tabWidget.setCurrentIndex(0)
@@ -512,6 +521,7 @@ class Ui_venPrincipal(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.panelPro), _translate("venPrincipal", "Productos"))
         self.menuArchivo.setTitle(_translate("venPrincipal", "Archivo"))
         self.toolBar.setWindowTitle(_translate("venPrincipal", "toolBar"))
+        self.toolBar_2.setWindowTitle(_translate("venPrincipal", "toolBar_2"))
         self.actionSalir.setText(_translate("venPrincipal", "Salir"))
         self.actionSalir.setShortcut(_translate("venPrincipal", "Alt+S"))
         self.ToolBarBackup.setText(_translate("venPrincipal", "Backup"))
@@ -522,9 +532,13 @@ class Ui_venPrincipal(object):
         self.ToolbarSalir.setShortcut(_translate("venPrincipal", "Alt+S"))
         self.ToolBarAbrirDir.setText(_translate("venPrincipal", "AbrirDir"))
         self.ToolBarAbrirDir.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/abrirdir/abrirDir.png\"/></p></body></html>"))
+        self.actionImprimir.setText(_translate("venPrincipal", "Imprimir"))
+        self.actionImprimir.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/Imprimir/printer.png\"/></p></body></html>"))
+        self.actionImprimir.setShortcut(_translate("venPrincipal", "Ctrl+P"))
 import Buscar_rc
 import logo_rc
 import reload_rc
+import toolBarPrinter_rc
 import toolabrirDir_rc
 import toolbarbackup_rc
 import toolbarsalir_rc
