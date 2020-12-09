@@ -1,16 +1,16 @@
 from ventana import *
 from vensalir import *
 from vencalendar import *
-from datetime import datetime
+from datetime import datetime, date
 import sys, var, events, clients, conexion
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
         super(DialogSalir, self).__init__()
-        var.dlgaviso= Ui_dlgaviso()
-        var.dlgaviso.setupUi(self)
-        var.dlgaviso.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
-        #var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
+        var.dlgsalir= Ui_dlgsalir()
+        var.dlgsalir.setupUi(self)
+        var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
+        #var.dlgsadlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
         #no es neceasario no quiero que haga nada
 
 class DialogCalendar(QtWidgets.QDialog):
@@ -23,13 +23,21 @@ class DialogCalendar(QtWidgets.QDialog):
         anoactual = datetime.now().year
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
+
+class DialogAvisos(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogAvisos, self).__init__()
+        var.dlgavisos = Ui_dlgaviso()
+        var.dlgaviso.setupUi(self)
+        var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
+        var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)
         
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
-        var.dlgaviso = DialogSalir()
+        var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
 
 
@@ -67,13 +75,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv(self)
-        # var.ui.addPermanentWidget(var.ui.lblstatus, 1)
-        # var.ui.statusBar.addPermanentWidget(var.ui.lblstatusdate, 2)
-        # var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
-        # var.ui.lblstatus.setText('Bienvenido a 2º DAM')
-        # fecha = datetime.today()
-        # var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
-        # var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
+        var.ui.statusBar.addPermanentWidget(var.ui.lblstatus, 1)
+        var.ui.statusBar.addPermanentWidget(var.ui.lblstatusdate, 2)
+        var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
+        var.ui.lblstatus.setText('Bienvenido a 2º DAM')
+        fecha = date.today()
+        var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
+        var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
 
         '''
         módulos conexion base datos

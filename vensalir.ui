@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dlgaviso</class>
- <widget class="QDialog" name="dlgaviso">
+ <class>dlgsalir</class>
+ <widget class="QDialog" name="dlgsalir">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -88,7 +88,7 @@
   <connection>
    <sender>btnBoxSalir</sender>
    <signal>accepted()</signal>
-   <receiver>dlgaviso</receiver>
+   <receiver>dlgsalir</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -104,7 +104,7 @@
   <connection>
    <sender>btnBoxSalir</sender>
    <signal>rejected()</signal>
-   <receiver>dlgaviso</receiver>
+   <receiver>dlgsalir</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

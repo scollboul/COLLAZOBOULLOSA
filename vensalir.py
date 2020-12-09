@@ -11,18 +11,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_dlgaviso(object):
-    def setupUi(self, dlgaviso):
-        dlgaviso.setObjectName("dlgaviso")
-        dlgaviso.resize(376, 151)
-        dlgaviso.setModal(True)
-        self.btnBoxSalir = QtWidgets.QDialogButtonBox(dlgaviso)
+class Ui_dlgsalir(object):
+    def setupUi(self, dlgsalir):
+        dlgsalir.setObjectName("dlgsalir")
+        dlgsalir.resize(376, 151)
+        dlgsalir.setModal(True)
+        self.btnBoxSalir = QtWidgets.QDialogButtonBox(dlgsalir)
         self.btnBoxSalir.setGeometry(QtCore.QRect(120, 90, 161, 32))
         self.btnBoxSalir.setOrientation(QtCore.Qt.Horizontal)
         self.btnBoxSalir.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
         self.btnBoxSalir.setCenterButtons(True)
         self.btnBoxSalir.setObjectName("btnBoxSalir")
-        self.lblMensalir = QtWidgets.QLabel(dlgaviso)
+        self.lblMensalir = QtWidgets.QLabel(dlgsalir)
         self.lblMensalir.setGeometry(QtCore.QRect(90, 40, 271, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -32,20 +32,20 @@ class Ui_dlgaviso(object):
         self.lblMensalir.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.lblMensalir.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lblMensalir.setObjectName("lblMensalir")
-        self.label = QtWidgets.QLabel(dlgaviso)
+        self.label = QtWidgets.QLabel(dlgsalir)
         self.label.setGeometry(QtCore.QRect(30, 70, 51, 51))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(":/newPrefix/iconoaviso.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
-        self.retranslateUi(dlgaviso)
-        self.btnBoxSalir.accepted.connect(dlgaviso.accept)
-        self.btnBoxSalir.rejected.connect(dlgaviso.reject)
-        QtCore.QMetaObject.connectSlotsByName(dlgaviso)
+        self.retranslateUi(dlgsalir)
+        self.btnBoxSalir.accepted.connect(dlgsalir.accept)
+        self.btnBoxSalir.rejected.connect(dlgsalir.reject)
+        QtCore.QMetaObject.connectSlotsByName(dlgsalir)
 
-    def retranslateUi(self, dlgaviso):
+    def retranslateUi(self, dlgsalir):
         _translate = QtCore.QCoreApplication.translate
-        dlgaviso.setWindowTitle(_translate("dlgaviso", "Salir"))
-        self.lblMensalir.setText(_translate("dlgaviso", "¿Está seguro que desea salir de la aplicación?"))
+        dlgsalir.setWindowTitle(_translate("dlgsalir", "Salir"))
+        self.lblMensalir.setText(_translate("dlgsalir", "¿Está seguro que desea salir de la aplicación?"))
 import avisosalir_rc
