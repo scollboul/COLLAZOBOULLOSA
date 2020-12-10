@@ -27,7 +27,7 @@ class DialogCalendar(QtWidgets.QDialog):
 class DialogAvisos(QtWidgets.QDialog):
     def __init__(self):
         super(DialogAvisos, self).__init__()
-        var.dlgavisos = Ui_dlgaviso()
+        var.dlgaviso = Ui_dlgaviso
         var.dlgaviso.setupUi(self)
         var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
         var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)

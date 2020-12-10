@@ -42,48 +42,6 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_7">
-    <item row="4" column="3">
-     <widget class="QLabel" name="lblstatus">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="5">
-     <widget class="QLabel" name="lblstatusdate">
-      <property name="maximumSize">
-       <size>
-        <width>500</width>
-        <height>500</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>31</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="3" column="0">
      <spacer name="horizontalSpacer_3">
       <property name="orientation">
@@ -100,7 +58,23 @@
       </property>
      </spacer>
     </item>
-    <item row="3" column="4">
+    <item row="4" column="7">
+     <widget class="QLabel" name="lblstatusdate">
+      <property name="maximumSize">
+       <size>
+        <width>500</width>
+        <height>500</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="6">
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
        <bool>true</bool>
@@ -200,6 +174,31 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="lblCodcli">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="mouseTracking">
+             <bool>false</bool>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 253, 217);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="lblValidar">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -215,25 +214,6 @@
               <italic>false</italic>
               <bold>false</bold>
              </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="lblCodcli">
-            <property name="cursor">
-             <cursorShape>ArrowCursor</cursorShape>
-            </property>
-            <property name="mouseTracking">
-             <bool>false</bool>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 253, 217);</string>
             </property>
             <property name="text">
              <string/>
@@ -463,6 +443,28 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="lblProv">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Provincia:</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="5">
            <widget class="QComboBox" name="cmbProv">
             <property name="sizePolicy">
@@ -489,28 +491,6 @@
             </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 229);</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="lblProv">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Provincia:</string>
             </property>
            </widget>
           </item>
@@ -824,7 +804,7 @@
       </widget>
      </widget>
     </item>
-    <item row="3" column="5">
+    <item row="3" column="7">
      <spacer name="horizontalSpacer_4">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -839,6 +819,32 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="4" column="4">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>31</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="6">
+     <widget class="QLabel" name="lblstatus">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
