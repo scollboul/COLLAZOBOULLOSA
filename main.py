@@ -1,8 +1,9 @@
+from PyQt5 import QtWidgets, QtGui, QtCore, QtPrintSupport
 from ventana import *
 from vensalir import *
 from vencalendar import *
 from datetime import datetime, date
-import sys, var, events, clients, conexion
+import sys, var, events, clients, conexion, printer
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -24,14 +25,24 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
 
-class DialogAvisos(QtWidgets.QDialog):
+class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
-        super(DialogAvisos, self).__init__()
-        var.dlgaviso = Ui_dlgaviso
-        var.dlgaviso.setupUi(self)
-        var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
-        var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)
-        
+        super(FileDialogAbrir, self).__init__()
+        self.setWindowTitle('Abrir Archivo')
+        self.setModal(True)
+
+class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
+    def __init__(self):
+        super(PrintDialogAbrir, self).__init__()
+
+# class DialogAvisos(QtWidgets.QDialog):
+#     def __init__(self):
+#         super(DialogAvisos, self).__init__()
+#         var.dlgaviso = Ui_dlgaviso
+#         var.dlgaviso.setupUi(self)
+#         var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
+#         var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)
+#
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -39,7 +50,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
-
+        var.filedlgabrir = FileDialogAbrir()
+        var.dlgImprimir = PrintDialogAbrir()
 
         '''
         colección de datos
@@ -55,6 +67,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
+        var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
+        var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
         var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
         #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
@@ -83,6 +97,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
 
+        '''
+      módulos de impresión
+        '''
+        var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         '''
         módulos conexion base datos
         '''

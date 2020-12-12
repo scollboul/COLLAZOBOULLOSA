@@ -47,9 +47,9 @@ class Eventos():
 
     def AbrirPrinter(self):
         try:
-            var.dlgimprimir.setWindowTitle('Imprimir')
-            var.dlgimprimir.setModal(True)
-            var.dlgimprimir.show()
+            var.dlgImprimir.setWindowTitle('Imprimir')
+            var.dlgImprimir.setModal(True)
+            var.dlgImprimir.show()
         except Exception as error:
             print('Error abrir imprimr: %s ' % str(error))
 
@@ -63,22 +63,3 @@ class Eventos():
 
         except Exception as error:
             print('Error abrir ventana aviso: %s ' % str(error))
-
-    def Confirmar():
-        try:
-            clients.Clientes.bajaCliente()
-            var.dlgaviso.hide()
-        except Exception as error:
-            print('Error botón confirma: %s ' % str(error))
-
-    def Anular():
-        try:
-            var.dlgaviso.hide()
-        except Exception as error:
-            print('Error botón anula: %s ' % str(error))
-
-    def mostrarAviso():
-        try:
-            var.dlgaviso.show()
-        except Exception as error:
-            print('Error mostrar aviso: %s ' % str(error))

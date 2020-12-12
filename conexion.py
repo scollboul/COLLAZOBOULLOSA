@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtSql
-import pymongo, var
+import var
 from ventana import *
 
 

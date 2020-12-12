@@ -311,7 +311,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>C:/Users/a20samuelcb/.designer/backup/img/calendar.png</normaloff>C:/Users/a20samuelcb/.designer/backup/img/calendar.png</iconset>
+              <normaloff>../../../a20samuelcb/.designer/backup/img/calendar.png</normaloff>../../../a20samuelcb/.designer/backup/img/calendar.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -863,7 +863,22 @@
     </property>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuInformes">
+    <property name="title">
+     <string>Informes</string>
+    </property>
+    <addaction name="menubarReportCli"/>
+    <addaction name="actionImprimir_factura"/>
+    <addaction name="actionListado_productos"/>
+   </widget>
+   <widget class="QMenu" name="menuAcerca_de">
+    <property name="title">
+     <string>Acerca de</string>
+    </property>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuInformes"/>
+   <addaction name="menuAcerca_de"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -877,7 +892,7 @@
    </attribute>
    <addaction name="separator"/>
    <addaction name="ToolBarAbrirDir"/>
-   <addaction name="actionImprimir"/>
+   <addaction name="ToolBarPrinter"/>
    <addaction name="ToolBarBackup"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
@@ -947,7 +962,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/abrirdir/abrirDir.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
-  <action name="actionImprimir">
+  <action name="ToolBarPrinter">
    <property name="icon">
     <iconset resource="img/toolBarPrinter.qrc">
      <normaloff>:/Imprimir/printer.png</normaloff>:/Imprimir/printer.png</iconset>
@@ -960,6 +975,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="menubarReportCli">
+   <property name="text">
+    <string>Listado Clientes</string>
+   </property>
+  </action>
+  <action name="actionImprimir_factura">
+   <property name="text">
+    <string>Imprimir factura</string>
+   </property>
+  </action>
+  <action name="actionListado_productos">
+   <property name="text">
+    <string>Listado productos</string>
    </property>
   </action>
  </widget>

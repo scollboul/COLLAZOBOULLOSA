@@ -6,7 +6,7 @@ global chkpago
 global dlgsalir
 global dlgcalendar
 global filedlgabrir
-global dlgimprimir
+global dlgImprimir
 global dlgaviso
 '''
 variables de clientes
