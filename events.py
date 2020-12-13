@@ -53,13 +53,4 @@ class Eventos():
         except Exception as error:
             print('Error abrir imprimr: %s ' % str(error))
 
-    def AbrirAviso(men):
-        try:
-            if var.dlgsalir.exec_() and var.salir:
-                pass
-            else:
-                var.lblsaviso.setText(men)
-                var.dlgsalir.show()
 
-        except Exception as error:
-            print('Error abrir ventana aviso: %s ' % str(error))

@@ -8,16 +8,16 @@ global dlgcalendar
 global filedlgabrir
 global dlgImprimir
 global dlgaviso
+
 '''
 variables de clientes
 '''
-global rbtsex
-global chkpago
+
 global sex
 pay = []
 pay2 = []
 
-'''
+''' 
 variables base de datos
 '''
 
