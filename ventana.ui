@@ -310,8 +310,8 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../../../a20samuelcb/.designer/backup/img/calendar.png</normaloff>../../../a20samuelcb/.designer/backup/img/calendar.png</iconset>
+             <iconset resource="img/calendario.qrc">
+              <normaloff>:/calendario/calendar.png</normaloff>:/calendario/calendar.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -517,16 +517,6 @@
           <property name="sizeConstraint">
            <enum>QLayout::SetFixedSize</enum>
           </property>
-          <item row="2" column="8">
-           <widget class="QCheckBox" name="chkTrans">
-            <property name="text">
-             <string>Transferencia</string>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">grpbtnPay</string>
-            </attribute>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="lblSexo">
             <property name="font">
@@ -556,6 +546,16 @@
             </attribute>
            </widget>
           </item>
+          <item row="2" column="6">
+           <widget class="QCheckBox" name="chkEfec">
+            <property name="text">
+             <string>Efectivo</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">grpbtnPay</string>
+            </attribute>
+           </widget>
+          </item>
           <item row="2" column="7">
            <widget class="QCheckBox" name="chkTar">
             <property name="text">
@@ -566,15 +566,18 @@
             </attribute>
            </widget>
           </item>
-          <item row="2" column="6">
-           <widget class="QCheckBox" name="chkEfec">
+          <item row="2" column="8">
+           <widget class="QCheckBox" name="chkTrans">
             <property name="text">
-             <string>Efectivo</string>
+             <string>Transferencia</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">grpbtnPay</string>
             </attribute>
            </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QSpinBox" name="spinEdad"/>
           </item>
           <item row="2" column="2">
            <widget class="QRadioButton" name="rbtMasc">
@@ -602,9 +605,6 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="4">
-           <widget class="QSpinBox" name="spinEdad"/>
-          </item>
          </layout>
         </item>
         <item>
@@ -614,85 +614,6 @@
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QTableWidget" name="tableCli">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="sizeAdjustPolicy">
-             <enum>QAbstractScrollArea::AdjustToContents</enum>
-            </property>
-            <property name="autoScroll">
-             <bool>true</bool>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-            <property name="textElideMode">
-             <enum>Qt::ElideMiddle</enum>
-            </property>
-            <property name="gridStyle">
-             <enum>Qt::DotLine</enum>
-            </property>
-            <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>300</number>
-            </attribute>
-            <attribute name="horizontalHeaderMinimumSectionSize">
-             <number>20</number>
-            </attribute>
-            <attribute name="verticalHeaderStretchLastSection">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>DNI</string>
-             </property>
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="textAlignment">
-              <set>AlignCenter</set>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>APELLIDOS</string>
-             </property>
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="textAlignment">
-              <set>AlignCenter</set>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>NOMBRE</string>
-             </property>
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="textAlignment">
-              <set>AlignCenter</set>
-             </property>
-            </column>
            </widget>
           </item>
           <item row="4" column="0">
@@ -773,6 +694,85 @@
               </widget>
              </item>
             </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QTableWidget" name="tableCli">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QAbstractScrollArea::AdjustToContents</enum>
+            </property>
+            <property name="autoScroll">
+             <bool>true</bool>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="textElideMode">
+             <enum>Qt::ElideMiddle</enum>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::DotLine</enum>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>300</number>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>20</number>
+            </attribute>
+            <attribute name="verticalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>DNI</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>APELLIDOS</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>NOMBRE</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>
@@ -995,6 +995,7 @@
  </widget>
  <resources>
   <include location="img/logo.qrc"/>
+  <include location="img/calendario.qrc"/>
   <include location="img/toolBarPrinter.qrc"/>
   <include location="img/toolabrirDir.qrc"/>
   <include location="img/reload.qrc"/>
@@ -1004,11 +1005,11 @@
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

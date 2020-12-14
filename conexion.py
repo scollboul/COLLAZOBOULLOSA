@@ -21,6 +21,7 @@ class Conexion():
         query.prepare(
             'insert into clientes (dni, apellidos, nombre, fechalta, direccion, provincia, sexo, formaspago, edad)'
             'VALUES (:dni, :apellidos, :nombre, :fechalta, :direccion, :provincia, :sexo, :formaspago, :edad)')
+        #en el orden de la base de datos
         query.bindValue(':dni', str(cliente[0]))
         query.bindValue(':apellidos', str(cliente[1]))
         query.bindValue(':nombre', str(cliente[2]))
