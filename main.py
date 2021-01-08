@@ -3,7 +3,7 @@ from ventana import *
 from vensalir import *
 from vencalendar import *
 from datetime import datetime, date
-import sys, var, events, clients, conexion, printer
+import sys, var, events, clients, conexion, printer, Products
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -97,6 +97,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
 
+        '''
+        Conecion eventos de productos
+        '''
+        var.ui.btnAltaProd.clicked.connect(Products.Productos.altaProductos)
         '''
       módulos de impresión
         '''

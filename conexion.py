@@ -173,6 +173,22 @@ class Conexion():
                 var.ui.tableCli.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
                 var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(2))))
                 var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
+
+        '''
+        Conexion a la tabla articulos
+        '''
+    def altaProd(Producto):
+        query = QtSql.QSqlQuery()
+        query.prepare(
+            'insert into productos (nombre, precio)'
+            'VALUES (:nombre, :precio)')
+        query.bindValue(':nombre', str(Producto[0]))
+        query.bindValue(':precio', str(Producto[1]))
+        if query.exec_():
+            print("Inserción Correcta")
+        else:
+            print("Error: ", query.lastError().text())
+
 # class Conexion():
 #     HOST='localhost'
 #     PORT='27017'

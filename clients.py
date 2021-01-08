@@ -178,7 +178,7 @@ class Clientes():
                 fila = [dato.text() for dato in fila]
             i = 0
             for i, dato in enumerate(client):
-                dato.setText(fila[ i])
+                dato.setText(fila[i])
             conexion.Conexion.cargarCliente()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
