@@ -9,15 +9,7 @@ class Productos():
             for i in product:
                 newProd.append(i.text())
             if product:
-                row = 0
-                column = 0
-                var.ui.tableProd.insertRow(row)
-                for registro in newProd:
-                    cell = QtWidgets.QTableWidgetItem(registro)
-                    var.ui.tableProd.setItem(row, column, cell)
-                    column += 1
-                print(newProd)
-                conexion.Conexion.altaCli(newProd)
+                conexion.Conexion.altaProd(newProd)
             else:
                 print('Faltan Datos')
         except Exception as error:
