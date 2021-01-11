@@ -39,7 +39,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente():
+    def cargarCliente(self):
         '''
         Módulo que carga el resto de widgets con los datos del cliente dni
         :return: None
@@ -174,20 +174,21 @@ class Conexion():
                 var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(2))))
                 var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
 
-                '''
-                  Conexion a la tabla articulos
-                  '''
-            def altaProd(Producto):
-                query = QtSql.QSqlQuery()
-                query.prepare(
-                    'insert into productos (nombre, precio)'
-                    'VALUES (:nombre, :precio)')
-                query.bindValue(':nombre', str(Producto[0]))
-                query.bindValue(':precio', int(Producto[1]))
-                if query.exec_():
-                    print("Inserción Correcta")
-                else:
-                    print("Error: ", query.lastError().text())
+        '''
+        Conexion a la tabla articulos
+        '''
+    def altaProd(Producto):
+        query = QtSql.QSqlQuery()
+        query.prepare(
+            'insert into productos (nombre, precio)'
+            'VALUES (:nombre, :precio)')
+        query.bindValue(':nombre', str(Producto[0]))
+        query.bindValue(':precio', int(Producto[1]))
+        if query.exec_():
+            print("Inserción Correcta")
+        else:
+            print("Error: ", query.lastError().text())
+
 # class Conexion():
 #     HOST='localhost'
 #     PORT='27017'
