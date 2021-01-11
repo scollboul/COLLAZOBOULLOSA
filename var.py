@@ -7,7 +7,8 @@ global dlgsalir
 global dlgcalendar
 global filedlgabrir
 global dlgImprimir
-global dlgaviso
+global rep
+
 
 '''
 variables de clientes

@@ -35,14 +35,6 @@ class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):
         super(PrintDialogAbrir, self).__init__()
 
-# class DialogAvisos(QtWidgets.QDialog):
-#     def __init__(self):
-#         super(DialogAvisos, self).__init__()
-#         var.dlgaviso = Ui_dlgaviso
-#         var.dlgaviso.setupUi(self)
-#         var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
-#         var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)
-#
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -64,7 +56,6 @@ class Main(QtWidgets.QMainWindow):
         botones formulario cliente
         '''
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
-
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
         var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)

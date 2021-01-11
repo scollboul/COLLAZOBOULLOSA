@@ -52,5 +52,3 @@ class Eventos():
             var.dlgImprimir.show()
         except Exception as error:
             print('Error abrir imprimr: %s ' % str(error))
-
-

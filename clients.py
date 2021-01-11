@@ -155,7 +155,7 @@ class Clientes():
             for i in range(len(client)):
                 client[i].setText('')
             var.ui.grpbtnSex.setExclusive(False)  #necesario para los radiobutton
-            for  dato in var.rbtsex:
+            for dato in var.rbtsex:
                 dato.setChecked(False)
             for data in var.chkpago:
                 data.setChecked(False)
@@ -178,7 +178,7 @@ class Clientes():
                 fila = [dato.text() for dato in fila]
             i = 0
             for i, dato in enumerate(client):
-                dato.setText(fila[ i])
+                dato.setText(fila[i])
             conexion.Conexion.cargarCliente()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
