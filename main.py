@@ -103,6 +103,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_connect(var.filebd)
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes(self)
+        conexion.Conexion.mostrarProductos()
 
     def closeEvent(self, event):
         if event:

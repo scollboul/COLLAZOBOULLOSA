@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1278</width>
-    <height>886</height>
+    <height>1589</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -58,22 +58,6 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <spacer name="horizontalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>754</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="4" column="6">
      <widget class="QLabel" name="lblstatus">
       <property name="text">
@@ -83,6 +67,22 @@
        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
       </property>
      </widget>
+    </item>
+    <item row="3" column="7">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item row="4" column="4">
      <spacer name="verticalSpacer">
@@ -100,8 +100,8 @@
       </property>
      </spacer>
     </item>
-    <item row="3" column="7">
-     <spacer name="horizontalSpacer_4">
+    <item row="3" column="0">
+     <spacer name="horizontalSpacer_3">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -111,7 +111,7 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>40</width>
-        <height>20</height>
+        <height>754</height>
        </size>
       </property>
      </spacer>
@@ -1044,17 +1044,23 @@
        <widget class="QTableWidget" name="tableProd">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>974</width>
+          <x>3</x>
+          <y>130</y>
+          <width>1071</width>
           <height>472</height>
          </rect>
         </property>
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>1071</width>
+          <height>472</height>
+         </size>
         </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
@@ -1085,6 +1091,20 @@
         </attribute>
         <column>
          <property name="text">
+          <string>CODIGO</string>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>NOMBRE</string>
          </property>
          <property name="font">
@@ -1111,20 +1131,53 @@
           <set>AlignCenter</set>
          </property>
         </column>
-        <column>
-         <property name="text">
-          <string>CODIGO</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-        </column>
+       </widget>
+       <widget class="QLabel" name="lblStock">
+        <property name="geometry">
+         <rect>
+          <x>770</x>
+          <y>30</y>
+          <width>54</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Stock:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="EditStock">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>30</y>
+          <width>111</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 229);</string>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -1288,11 +1341,11 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>
