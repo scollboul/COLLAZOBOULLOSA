@@ -87,7 +87,7 @@ class Main(QtWidgets.QMainWindow):
         fecha = date.today()
         var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
-
+        var.ui.tableProd.clicked.connect(Products.Productos.cargarProd)
         '''
         Conecion eventos de productos
         '''

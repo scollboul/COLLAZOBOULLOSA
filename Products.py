@@ -32,5 +32,5 @@ class Productos():
                 dato.setText(fila[i])
             conexion.Conexion.cargarProd(cod)
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error cargar productos: %s ' % str(error))
 

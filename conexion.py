@@ -202,22 +202,22 @@ class Conexion():
                 #crer fila
                 var.ui.tableProd.setRowCount(index+1)
                 #Voy metiendo los datos en las celdas
-                var.ui.tableProd(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
-                var.ui.tableProd(index, 1, QtWidgets.QTableWidgetItem(nombre))
-                var.ui.tableProd(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
+                var.ui.tableProd.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
+                var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
                 index+=1
         else:
             print("error mostrat clientes; ", query.lastError().text())
     def cargarProd(cod):
         query = QtSql.QSqlQuery()
         query.prepare('select nombre, precio, stock from productos where codigo = :cod')
-        query.bindValue(':codigo', cod)
+        query.bindValue(':cod', cod)
         if query.exec_():
             while query.next():
                 var.ui.lblProd.setText(str(cod))
                 var.ui.editNomeProducto.setText(str(query.value(0)))
                 var.ui.EditPrecio.setText(str(query.value(1)))
-                var.ui.EditStock.setText(str(query.value(1)))
+                var.ui.EditStock.setText(str(query.value(2)))
 
 # class Conexion():
 #     HOST='localhost'

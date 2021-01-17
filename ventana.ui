@@ -1131,6 +1131,20 @@
           <set>AlignCenter</set>
          </property>
         </column>
+        <column>
+         <property name="text">
+          <string>STOCK</string>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="lblStock">
         <property name="geometry">
@@ -1341,11 +1355,11 @@
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>
