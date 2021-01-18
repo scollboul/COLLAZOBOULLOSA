@@ -23,14 +23,16 @@ class Productos():
         '''
         try:
             fila = var.ui.tableProd.selectedItems()
-            prod = [var.ui.editNomeProducto, var.ui.EditPrecio, var.ui.EditStock]
+            prod = [var.ui.editNomeProducto, var.ui.EditPrecio,var.ui.EditStock]
+            print(prod)
             if fila:
                 fila = [dato.text() for dato in fila]
             i = 1
-            cod= fila[0]
+            cod = fila[0]
             for i, dato in enumerate(prod):
                 dato.setText(fila[i])
             conexion.Conexion.cargarProd(cod)
         except Exception as error:
             print('Error cargar productos: %s ' % str(error))
+
 

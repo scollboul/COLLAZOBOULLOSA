@@ -165,7 +165,7 @@ class Clientes():
         except Exception as error:
             print('Error limpiar widgets: %s ' % str(error))
 
-    def cargarCli():
+    def cargarCli(self):
         '''
         carga en widgets formulario cliente los datos
         elegidos en la tabla

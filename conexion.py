@@ -190,7 +190,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def mostrarProductos():
+    def mostrarProductos(self):
         index=0
         query=QtSql.QSqlQuery()
         query.prepare('select codigo,nombre,precio from productos order by nombre')
@@ -207,7 +207,8 @@ class Conexion():
                 var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
                 index+=1
         else:
-            print("error mostrat clientes; ", query.lastError().text())
+            print("error mostrar clientes; ", query.lastError().text())
+
     def cargarProd(cod):
         query = QtSql.QSqlQuery()
         query.prepare('select nombre, precio, stock from productos where codigo = :cod')
@@ -225,6 +226,6 @@ class Conexion():
 #     URI_CONNECTION='mongodb://'+HOST+':'+PORT+'/'
 #     var.DATABASE='empresa'
 #     try:
-#         print('COnexión al servidor %s' %HOST)
+#         print('Conexión al servidor %s' %HOST)
 #     except:
 #         print('error de conexion')
