@@ -87,11 +87,12 @@ class Main(QtWidgets.QMainWindow):
         fecha = date.today()
         var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
-        var.ui.tableProd.clicked.connect(Products.Productos.cargarProd)
+        var.ui.btnBajaCli.clicked.connect(Products.Products.altaProducto)
+        var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
         '''
         Conecion eventos de productos
         '''
-        var.ui.btnAltaProd.clicked.connect(Products.Productos.altaProductos)
+        var.ui.btnAltaProd.clicked.connect(Products.Products.altaProducto)
         '''
       módulos de impresión
         '''
@@ -102,8 +103,8 @@ class Main(QtWidgets.QMainWindow):
 
         conexion.Conexion.db_connect(var.filebd)
         # conexion.Conexion()
-        conexion.Conexion.mostrarClientes(self)
-        conexion.Conexion.mostrarProductos(self)
+        conexion.Conexion.mostrarClientes()
+        conexion.Conexion.mostrarProducts()
 
     def closeEvent(self, event):
         if event:

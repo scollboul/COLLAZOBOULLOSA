@@ -889,7 +889,7 @@
          <string>Nombre: </string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="editNomeProducto">
+       <widget class="QLineEdit" name="editArtic">
         <property name="geometry">
          <rect>
           <x>140</x>
@@ -936,7 +936,7 @@
          <string>Precio:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="EditPrecio">
+       <widget class="QLineEdit" name="editPrec">
         <property name="geometry">
          <rect>
           <x>630</x>
@@ -1131,6 +1131,20 @@
           <set>AlignCenter</set>
          </property>
         </column>
+        <column>
+         <property name="text">
+          <string>STOCK</string>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="lblStock">
         <property name="geometry">
@@ -1160,7 +1174,7 @@
          <string>Stock:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="EditStock">
+       <widget class="QLineEdit" name="editStock">
         <property name="geometry">
          <rect>
           <x>830</x>
@@ -1341,11 +1355,11 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

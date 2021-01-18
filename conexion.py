@@ -70,7 +70,7 @@ class Conexion():
                     var.chkpago[2].setChecked(True)
                 var.ui.spinEdad.setValue(int(query.value(9)))
 
-    def mostrarClientes(self):
+    def mostrarClientes():
         '''
         Carga los datos principales del cliente en la tabla
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
@@ -177,48 +177,79 @@ class Conexion():
         '''
         Conexion a la tabla articulos
         '''
-    def altaProd(Producto):
+
+    def altaProducto(producto):
+        '''
+        Cargamos producto en tabla artículos
+        :return: None
+        '''
         query = QtSql.QSqlQuery()
         query.prepare(
-            'insert into productos (nombre, precio, stock)'
-            'VALUES (:nombre, :precio, :stock)')
-        query.bindValue(':nombre', str(Producto[0]))
-        query.bindValue(':precio', int(Producto[1]))
-        query.bindValue(':stock', int(Producto[2]))
+            'insert into productos (producto, precio, stock)'
+            'VALUES (:producto, :precio, :stock)')
+        query.bindValue(':producto', str(producto[0]))
+        producto[1] = producto[1].replace(',', '.')
+        query.bindValue(':precio', round(float(producto[1]), 2))
+        query.bindValue(':stock', int(producto[2]))
         if query.exec_():
-            print("Inserción Correcta")
-        else:
-            print("Error: ", query.lastError().text())
+            var.ui.lblstatus.setText('Alta Producto ' + str(producto[0]))
+        Conexion.mostrarProducts()
 
-    def mostrarProductos(self):
-        index=0
-        query=QtSql.QSqlQuery()
-        query.prepare('select codigo,nombre,precio from productos order by nombre')
+    def mostrarProducts():
+        '''
+        Carga los datos principales del productos la tabla
+        se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un producto
+        :return: None
+        '''
+        # while var.ui.tableCli.rowCount() > 0:
+        #     var.ui.tableCli.removeRow(0)
+        index = 0
+        query = QtSql.QSqlQuery()
+        query.prepare('select codigo, producto, precio from productos order by producto')
         if query.exec_():
             while query.next():
-                codigo=query.value(0)
-                nombre=query.value(1)
-                precio=query.value(2)
-                #crer fila
-                var.ui.tableProd.setRowCount(index+1)
-                #Voy metiendo los datos en las celdas
+                # cojo los valores
+                codigo = query.value(0)
+                producto = query.value(1)
+                precio = query.value(2)
+                # crea la fila
+                var.ui.tableProd.setRowCount(index + 1)
+                # voy metiendo los datos en cada celda de la fila
                 var.ui.tableProd.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
-                var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
+                var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(producto))
                 var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
-                index+=1
+                index += 1
         else:
-            print("error mostrar clientes; ", query.lastError().text())
+            print("Error mostrar clientes: ", query.lastError().text())
 
     def cargarProd(cod):
+        '''
+        Módulo que carga el resto de widgets con los datos del prodc
+        :return: None
+        '''
         query = QtSql.QSqlQuery()
-        query.prepare('select nombre, precio, stock from productos where codigo = :cod')
+        query.prepare('select producto, precio, stock from productos where codigo = :cod')
         query.bindValue(':cod', cod)
         if query.exec_():
             while query.next():
-                var.ui.lblProd.setText(str(cod))
-                var.ui.editNomeProducto.setText(str(query.value(0)))
-                var.ui.EditPrecio.setText(str(query.value(1)))
-                var.ui.EditStock.setText(str(query.value(2)))
+                var.ui.lblCodPro.setText(str(cod))
+                var.ui.editArtic.setText(str(query.value(0)))
+                var.ui.editPrec.setText(str(query.value(1)))
+                var.ui.editStock.setText(str(query.value(2)))
+
+    def bajaPro(cod):
+        ''''
+        modulo para eliminar cliente. se llama desde fichero clientes.py
+        :return None
+        '''
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from productos where codigo = :cod')
+        query.bindValue(':cod', cod)
+        if query.exec_():
+            var.ui.lblstatus.setText('Producto de còdigo ' + cod + ' dado de baja')
+        else:
+            print("Error baja producto: ", query.lastError().text())
+        Conexion.mostrarProducts()
 
 # class Conexion():
 #     HOST='localhost'
