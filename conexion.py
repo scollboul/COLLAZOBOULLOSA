@@ -39,7 +39,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente(self):
+    def cargarCliente():
         '''
         Módulo que carga el resto de widgets con los datos del cliente dni
         :return: None
@@ -179,20 +179,16 @@ class Conexion():
         '''
 
     def altaProducto(producto):
-        '''
-        Cargamos producto en tabla artículos
-        :return: None
-        '''
         query = QtSql.QSqlQuery()
-        query.prepare(
-            'insert into productos (producto, precio, stock)'
-            'VALUES (:producto, :precio, :stock)')
-        query.bindValue(':producto', str(producto[0]))
-        producto[1] = producto[1].replace(',', '.')
+        query.prepare('insert into productos (nombre, precio, stock)'
+            'VALUES (:nombre, :precio, :stock)')
+        query.bindValue(':nombre', str(producto[0]))
         query.bindValue(':precio', round(float(producto[1]), 2))
         query.bindValue(':stock', int(producto[2]))
         if query.exec_():
-            var.ui.lblstatus.setText('Alta Producto ' + str(producto[0]))
+            var.ui.lblstatus.setText('Alta Producto del ' + str(producto[0]))
+        else:
+            print("Erro"+query.lastError().text())
         Conexion.mostrarProducts()
 
     def mostrarProducts():
@@ -205,7 +201,7 @@ class Conexion():
         #     var.ui.tableCli.removeRow(0)
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select codigo, producto, precio from productos order by producto')
+        query.prepare('select codigo, nombre, precio from productos order by nombre')
         if query.exec_():
             while query.next():
                 # cojo los valores
@@ -220,7 +216,7 @@ class Conexion():
                 var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
                 index += 1
         else:
-            print("Error mostrar clientes: ", query.lastError().text())
+            print("Error mostrar productos"": ", query.lastError().text())
 
     def cargarProd(cod):
         '''
@@ -228,28 +224,45 @@ class Conexion():
         :return: None
         '''
         query = QtSql.QSqlQuery()
-        query.prepare('select producto, precio, stock from productos where codigo = :cod')
+        query.prepare('select nombre, precio, stock from productos where codigo = :cod')
         query.bindValue(':cod', cod)
         if query.exec_():
             while query.next():
-                var.ui.lblCodPro.setText(str(cod))
-                var.ui.editArtic.setText(str(query.value(0)))
-                var.ui.editPrec.setText(str(query.value(1)))
-                var.ui.editStock.setText(str(query.value(2)))
-
-    def bajaPro(cod):
+                var.ui.lblProd.setText(str(cod))
+                var.ui.editNomeProducto.setText(str(query.value(0)))
+                var.ui.EditPrecio.setText(str(query.value(1)))
+                var.ui.EditStock.setText(str(query.value(2)))
+    def BajaProducto(codigo):
         ''''
         modulo para eliminar cliente. se llama desde fichero clientes.py
         :return None
         '''
         query = QtSql.QSqlQuery()
-        query.prepare('delete from productos where codigo = :cod')
-        query.bindValue(':cod', cod)
+        query.prepare('delete from productos where codigo = :codigo')
+        query.bindValue(':codigo', codigo)
         if query.exec_():
-            var.ui.lblstatus.setText('Producto de còdigo ' + cod + ' dado de baja')
+            var.ui.lblstatus.setText('Baja del producto ' + codigo )
         else:
-            print("Error baja producto: ", query.lastError().text())
+            print("Error eliminar Producto: ", query.lastError().text())
         Conexion.mostrarProducts()
+
+    def ModificarProducto(codigo, newprod):
+        ''''
+        modulo para modificar cliente. se llama desde fichero clientes.py
+        :return None
+        '''
+        query = QtSql.QSqlQuery()
+        codigo = codigo
+        query.prepare('update productos set nombre=:nombre, precio=:precio, stock=:stock where codigo=:codigo')
+        query.bindValue(':codigo', codigo)
+        query.bindValue(':nombre', str(newprod[0]))
+        query.bindValue(':precio', str(newprod[1]))
+        query.bindValue(':stock', str(newprod[2]))
+        if query.exec_():
+            print("Producto Modificado cambiado correctamente")
+        else:
+            print("Error al modificar el Producto",+query.lastError().text())
+
 
 # class Conexion():
 #     HOST='localhost'

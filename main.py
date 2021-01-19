@@ -88,11 +88,18 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
         var.ui.btnBajaCli.clicked.connect(Products.Products.altaProducto)
+
         var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
+        var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         '''
         Conecion eventos de productos
         '''
         var.ui.btnAltaProd.clicked.connect(Products.Products.altaProducto)
+        var.ui.btnLimpiarProd.clicked.connect(Products.Products.limpiarProd)
+        var.ui.btnBajaProd.clicked.connect(Products.Products.BajaProd)
+        var.ui.btnModifProd.clicked.connect(Products.Products.ModificarProd)
+        var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
+
         '''
       módulos de impresión
         '''
