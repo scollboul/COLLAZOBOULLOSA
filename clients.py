@@ -191,7 +191,7 @@ class Clientes():
         try:
             dni = var.ui.editDni.text()
             conexion.Conexion.bajaCli(dni)
-            conexion.Conexion.mostrarClientes(self)
+            conexion.Conexion.mostrarClientes()
             Clientes.limpiarCli()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
@@ -214,10 +214,10 @@ class Clientes():
             newdata.append(edad)
             cod = var.ui.lblCodcli.text()
             conexion.Conexion.modifCli(cod, newdata)
-            conexion.Conexion.mostrarClientes(self)
+            conexion.Conexion.mostrarClientes()
 
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error modifcar clientes: %s ' % str(error))
 
     def reloadCli():
         '''
@@ -227,7 +227,7 @@ class Clientes():
         try:
             print(var.ui.spinEdad.value())
             Clientes.limpiarCli()
-            conexion.Conexion.mostrarClientes(None)
+            conexion.Conexion.mostrarClientes()
         except Exception as error:
             print('Error recargar clientes: %s ' % str(error))
 
