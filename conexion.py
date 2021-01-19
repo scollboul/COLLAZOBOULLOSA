@@ -39,7 +39,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente(self):
+    def cargarCliente():
         '''
         Módulo que carga el resto de widgets con los datos del cliente dni
         :return: None
@@ -70,7 +70,7 @@ class Conexion():
                     var.chkpago[2].setChecked(True)
                 var.ui.spinEdad.setValue(int(query.value(9)))
 
-    def mostrarClientes(self):
+    def mostrarClientes():
         '''
         Carga los datos principales del cliente en la tabla
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
@@ -189,8 +189,9 @@ class Conexion():
             print("Inserción Correcta")
         else:
             print("Error: ", query.lastError().text())
+        Conexion.mostrarProductos()
 
-    def mostrarProductos(self):
+    def mostrarProductos():
         index=0
         query=QtSql.QSqlQuery()
         query.prepare('select codigo,nombre,precio from productos order by nombre')
@@ -219,6 +220,29 @@ class Conexion():
                 var.ui.editNomeProducto.setText(str(query.value(0)))
                 var.ui.EditPrecio.setText(str(query.value(1)))
                 var.ui.EditStock.setText(str(query.value(2)))
+
+    def bajaProd(cod):
+        query=QtSql.QSqlQuery()
+        query.prepare('delete from productos where codigo= :cod')
+        query.bindValue(':cod',cod)
+        if query.exec_():
+            print('Producto con el codigo '+cod+' eliminado correctamente')
+        else:
+            print("Error al eliminar producto", query.lastError().text())
+        Conexion.mostrarProductos()
+
+    def modifProd(codigo, newdprod):
+        query = QtSql.QSqlQuery()
+        codigo = (codigo)
+        query.prepare('update productos set nombre=:nombre, precio=:precio, stock=:stock where codigo=:codigo')
+        query.bindValue(':codigo', (codigo))
+        query.bindValue(':nombre', str(newdprod[0]))
+        query.bindValue(':precio', str(newdprod[1]))
+        query.bindValue(':stock', str(newdprod[2]))
+        if query.exec_():
+            print('Cliente con codigo ' + codigo + ' modificado')
+        else:
+            print("Error modificar producto: ", query.lastError().text())
 
 # class Conexion():
 #     HOST='localhost'

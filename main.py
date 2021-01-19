@@ -50,18 +50,19 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
         var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
-        '''
-        conexion de eventos con los objetos
-        estamos conectando el código con la interfaz gráfico
-        botones formulario cliente
-        '''
-        var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
-        var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
-        var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
-        var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
         var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
-        #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
+        clients.Clientes.valoresSpin()
+
+        for i in var.rbtsex:
+            i.toggled.connect(clients.Clientes.selSexo)
+        for i in var.chkpago:
+            i.stateChanged.connect(clients.Clientes.selPago)
+        var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
+        var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
+        var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        events.Eventos.cargarProv(self)
+
+        ''' Conexion botones evento cliente'''
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
@@ -69,17 +70,20 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
-        clients.Clientes.valoresSpin()
+        var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
 
-        for i in var.rbtsex:
-            i.toggled.connect(clients.Clientes.selSexo)
-        for i in var.chkpago:
-            i.stateChanged.connect(clients.Clientes.selPago)
+        '''Conexion eventos toolbar'''
+        var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
+        var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
+        var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
 
-        var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
-        var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
-        var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        events.Eventos.cargarProv(self)
+
+        #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
+
+
+
+        ''' StatusBar'''
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatusdate, 2)
         var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
@@ -87,23 +91,28 @@ class Main(QtWidgets.QMainWindow):
         fecha = date.today()
         var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
-        var.ui.tableProd.clicked.connect(Products.Productos.cargarProd)
+
         '''
-        Conecion eventos de productos
+        Conecion botones eventos de productos
         '''
         var.ui.btnAltaProd.clicked.connect(Products.Productos.altaProductos)
+        var.ui.tableProd.clicked.connect(Products.Productos.cargarProd)
+        var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.btnLimpiarProd.clicked.connect(Products.Productos.limpiarProd)
+        var.ui.btnBajaProd.clicked.connect(Products.Productos.eliminarProd)
+        var.ui.btnModifProd.clicked.connect(Products.Productos.modificarProd)
+        var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
         '''
-      módulos de impresión
+        módulos de impresión
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         '''
         módulos conexion base datos
         '''
-
         conexion.Conexion.db_connect(var.filebd)
         # conexion.Conexion()
-        conexion.Conexion.mostrarClientes(self)
-        conexion.Conexion.mostrarProductos(self)
+        conexion.Conexion.mostrarClientes()
+        conexion.Conexion.mostrarProductos()
 
     def closeEvent(self, event):
         if event:
