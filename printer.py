@@ -35,7 +35,7 @@ class Printer():
             var.rep.setFont('Helvetica-Oblique', size=6)
             var.rep.drawString(460,40, str(fecha))
             var.rep.drawString(270,40, str('Pagina %s' % var.rep.getPageNumber()))
-            var.rep.drawString(50,45,str(listado))
+            var.rep.drawString(50,40,str(listado))
         except Exception as error:
             print("Errorenel pie de pagina: %s" % str(error))
 
