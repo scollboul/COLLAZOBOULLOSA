@@ -1,8 +1,9 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from PyQt5 import QtSql
-import os, var, ventana
+import os
 from datetime import datetime
+import var
 
 class Printer():
     def cabecera():
@@ -21,7 +22,7 @@ class Printer():
             var.rep.drawString(54, 790,textnom)
             var.rep.drawString(54, 775, textdir)
             var.rep.drawString(54, 760, texttlfo)
-            #var.rep.drawImage(logo, '450', '752')
+            var.rep.drawImage(logo, '450', '752')
         except Exception as error:
             print("Error cabercera informe: %s" %str(error))
 
