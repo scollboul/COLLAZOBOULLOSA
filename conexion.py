@@ -186,7 +186,7 @@ class Conexion():
         query.bindValue(':precio', round(float(producto[1]), 2))
         query.bindValue(':stock', int(producto[2]))
         if query.exec_():
-            var.ui.lblstatus.setText('Alta Producto del ' + str(producto[0]))
+            var.ui.lblstatus.setText('Alta Producto con el codigo ' + str(producto[0]))
         else:
             print("Erro"+query.lastError().text())
         Conexion.mostrarProducts()
@@ -241,7 +241,7 @@ class Conexion():
         query.prepare('delete from productos where codigo = :codigo')
         query.bindValue(':codigo', codigo)
         if query.exec_():
-            var.ui.lblstatus.setText('Baja del producto ' + codigo )
+            var.ui.lblstatus.setText('Baja del producto con el codigo ' + codigo )
         else:
             print("Error eliminar Producto: ", query.lastError().text())
         Conexion.mostrarProducts()
@@ -259,7 +259,7 @@ class Conexion():
         query.bindValue(':precio', str(newprod[1]))
         query.bindValue(':stock', str(newprod[2]))
         if query.exec_():
-            print("Producto Modificado cambiado correctamente")
+            var.ui.lblstatus.setText('Modificado el producto con el codigo ' + codigo )
         else:
             print("Error al modificar el Producto",+query.lastError().text())
 

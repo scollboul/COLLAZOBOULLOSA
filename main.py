@@ -50,18 +50,20 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
         var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
+        clients.Clientes.valoresSpin()
+        var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
+        var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
+        for i in var.rbtsex:
+            i.toggled.connect(clients.Clientes.selSexo)
+        for i in var.chkpago:
+            i.stateChanged.connect(clients.Clientes.selPago)
+        events.Eventos.cargarProv(self)
         '''
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
         botones formulario cliente
         '''
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
-        var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
-        var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
-        var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
-        var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
-        #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
@@ -69,17 +71,23 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
-        clients.Clientes.valoresSpin()
 
-        for i in var.rbtsex:
-            i.toggled.connect(clients.Clientes.selSexo)
-        for i in var.chkpago:
-            i.stateChanged.connect(clients.Clientes.selPago)
-
-        var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
+        '''Tabla clientes eventos'''
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        events.Eventos.cargarProv(self)
+
+        ''' ToolBar'''
+        var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
+        var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
+        var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
+
+        '''Menu bar'''
+        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
+        #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
+
+
+        '''Status Bar'''
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatusdate, 2)
         var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
@@ -89,8 +97,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
         var.ui.btnBajaCli.clicked.connect(Products.Products.altaProducto)
 
-        var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
-        var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+
         '''
         Conecion eventos de productos
         '''
@@ -99,19 +106,24 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaProd.clicked.connect(Products.Products.BajaProd)
         var.ui.btnModifProd.clicked.connect(Products.Products.ModificarProd)
         var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
+        '''Tabla Productos eventos'''
+        var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
+        var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 
         '''
       módulos de impresión
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         '''
+        
         módulos conexion base datos
         '''
-
         conexion.Conexion.db_connect(var.filebd)
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes()
         conexion.Conexion.mostrarProducts()
+
+        var.ui.tabWidget.setCurrentIndex(0)
 
     def closeEvent(self, event):
         if event:

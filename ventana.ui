@@ -1253,7 +1253,7 @@
     <string>Salir</string>
    </property>
    <property name="shortcut">
-    <string>Alt+S</string>
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="ToolBarBackup">
