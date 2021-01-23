@@ -98,9 +98,10 @@ class Clientes():
         Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
         '''
         try:
-            data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
-            var.ui.editClialta.setText(str(data))
-            var.dlgcalendar.hide()
+            if var.ui.TabWidget.currentIndex() == 0:
+                data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+                var.ui.editClialta.setText(str(data))
+                var.dlgcalendar.hide()
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
@@ -143,7 +144,7 @@ class Clientes():
                 print('Faltan Datos')
             #Clientes.limpiarCli()
         except Exception as error:
-            print('Error cargar fecha lo : %s ' % str(error))
+            print('Error alta cliente : %s ' % str(error))
 
     def limpiarCli():
         '''
@@ -173,12 +174,16 @@ class Clientes():
         '''
         try:
             fila = var.ui.tableCli.selectedItems()
-            client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
+            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome ]
             if fila:
                 fila = [dato.text() for dato in fila]
             i = 0
             for i, dato in enumerate(client):
                 dato.setText(fila[i])
+                if i==0:
+                    var.ui.EditDNICli.setText(fila[0])
+                if i==1:
+                    var.ui.EditApelCli.setText(fila[1])
             conexion.Conexion.cargarCliente()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
@@ -194,7 +199,7 @@ class Clientes():
             conexion.Conexion.mostrarClientes()
             Clientes.limpiarCli()
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error baja clientes: %s ' % str(error))
 
 
     def modifCliente(self):

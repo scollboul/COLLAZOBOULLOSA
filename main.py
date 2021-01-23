@@ -3,7 +3,7 @@ from ventana import *
 from vensalir import *
 from vencalendar import *
 from datetime import datetime, date
-import sys, var, events, clients, conexion, printer, Products
+import sys, var, events, clients, conexion, printer, Products, ventas
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -24,6 +24,7 @@ class DialogCalendar(QtWidgets.QDialog):
         anoactual = datetime.now().year
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
+        var.dlgcalendar.Calendar.clicked.connect(ventas.Ventas.cargarFecha)
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
@@ -71,6 +72,19 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
+        '''
+        Conecion eventos de productos
+        '''
+        var.ui.btnAltaProd.clicked.connect(Products.Products.altaProducto)
+        var.ui.btnLimpiarProd.clicked.connect(Products.Products.limpiarProd)
+        var.ui.btnBajaProd.clicked.connect(Products.Products.BajaProd)
+        var.ui.btnModifProd.clicked.connect(Products.Products.ModificarProd)
+        var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
+
+        '''
+        Conecion a eventos de facturacion
+        '''
+        var.ui.btnCalendario.clicked.connect(clients.Clientes.abrirCalendar)
 
         '''Tabla clientes eventos'''
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
@@ -98,14 +112,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaCli.clicked.connect(Products.Products.altaProducto)
 
 
-        '''
-        Conecion eventos de productos
-        '''
-        var.ui.btnAltaProd.clicked.connect(Products.Products.altaProducto)
-        var.ui.btnLimpiarProd.clicked.connect(Products.Products.limpiarProd)
-        var.ui.btnBajaProd.clicked.connect(Products.Products.BajaProd)
-        var.ui.btnModifProd.clicked.connect(Products.Products.ModificarProd)
-        var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
+
         '''Tabla Productos eventos'''
         var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
         var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
@@ -123,8 +130,7 @@ class Main(QtWidgets.QMainWindow):
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes()
         conexion.Conexion.mostrarProducts()
-
-        var.ui.tabWidget.setCurrentIndex(0)
+        var.ui.TabWidget.setCurrentIndex(0)
 
     def closeEvent(self, event):
         if event:
