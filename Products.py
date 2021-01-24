@@ -19,7 +19,7 @@ class Products():
             else:
                 print('Faltan Datos')
         except Exception as error:
-            print('Error cargar producto : %s ' % str(error))
+            print('Error en la alta del producto : %s ' % str(error))
 
 
     def cargarProd():
@@ -40,6 +40,7 @@ class Products():
             conexion.Conexion.cargarProd(cod)
         except Exception as error:
             print('Error cargar productos en productos: %s ' % str(error))
+
     def limpiarProd():
         '''
         limpia los datos del formulario cliente

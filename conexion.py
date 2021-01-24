@@ -186,7 +186,7 @@ class Conexion():
         query.bindValue(':precio', round(float(producto[1]), 2))
         query.bindValue(':stock', int(producto[2]))
         if query.exec_():
-            var.ui.lblstatus.setText('Alta Producto con el codigo ' + str(producto[0]))
+            var.ui.lblstatus.setText('Alta de producto  ' + str(producto[0]))
         else:
             print("Erro"+query.lastError().text())
         Conexion.mostrarProducts()
@@ -232,6 +232,7 @@ class Conexion():
                 var.ui.editNomeProducto.setText(str(query.value(0)))
                 var.ui.EditPrecio.setText(str(query.value(1)))
                 var.ui.EditStock.setText(str(query.value(2)))
+
     def BajaProducto(codigo):
         ''''
         modulo para eliminar cliente. se llama desde fichero clientes.py
@@ -263,7 +264,57 @@ class Conexion():
         else:
             print("Error al modificar el Producto",+query.lastError().text())
 
+    def altaFactura(factura):
+        query = QtSql.QSqlQuery()
+        query.prepare('insert into facturas (dni, fecha, apellidos)'
+            'VALUES (:dni, :fecha, :apellidos)')
+        query.bindValue(':dni', str(factura[0]))
+        query.bindValue(':fecha', str(factura[1]))
+        query.bindValue(':apellidos', str(factura[2]))
+        if query.exec_():
+            var.ui.lblstatus.setText('Alta factura del cliente con el DNI ' + str(factura[0]))
+        else:
+            print("Erro"+query.lastError().text())
 
+    def mostrarFacturas():
+        '''
+        Carga los datos principales del Facturas la tabla
+        se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un producto
+        :return: None
+        '''
+        # while var.ui.tableCli.rowCount() > 0:
+        #     var.ui.tableCli.removeRow(0)
+        index = 0
+        query = QtSql.QSqlQuery()
+        query.prepare('select codfac, fecha from facturas')
+        if query.exec_():
+            while query.next():
+                # cojo los valores
+                codigo = query.value(0)
+                fecha = query.value(1)
+                # crea la fila
+                var.ui.tableFechaFact.setRowCount(index + 1)
+                # voy metiendo los datos en cada celda de la fila
+                var.ui.tableFechaFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                var.ui.tableFechaFact.setItem(index, 1, QtWidgets.QTableWidgetItem(str(fecha)))
+                index += 1
+        else:
+            print("Error mostrar Facturas"": ", query.lastError().text())
+
+    def cargarFact(cod):
+        '''
+        Módulo que carga el resto de widgets con los datos del prodc
+        :return: None
+        '''
+        query = QtSql.QSqlQuery()
+        query.prepare('select dni, fecha, apellidos from facturas where codfac = :cod')
+        query.bindValue(':cod', cod)
+        if query.exec_():
+            while query.next():
+                var.ui.lblFactura.setText(str(cod))
+                var.ui.EditDNICli.setText(str(query.value(0)))
+                var.ui.EditFechaFact.setText(str(query.value(1)))
+                var.ui.EditApelCli.setText(str(query.value(2)))
 # class Conexion():
 #     HOST='localhost'
 #     PORT='27017'

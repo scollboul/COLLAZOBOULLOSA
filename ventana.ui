@@ -981,7 +981,7 @@
          </property>
         </column>
        </widget>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="tableFact">
         <property name="geometry">
          <rect>
           <x>300</x>

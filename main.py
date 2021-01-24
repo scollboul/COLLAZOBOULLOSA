@@ -85,10 +85,20 @@ class Main(QtWidgets.QMainWindow):
         Conecion a eventos de facturacion
         '''
         var.ui.btnCalendario.clicked.connect(clients.Clientes.abrirCalendar)
+        var.ui.btnFacturar.clicked.connect(ventas.Ventas.altafactura)
+
 
         '''Tabla clientes eventos'''
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+
+        '''Tabla Productos eventos'''
+        var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
+        var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+
+        '''Tabla FacturaS eventos'''
+        var.ui.tableFechaFact.clicked.connect(ventas.Ventas.cargarFactura)
+        var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 
         ''' ToolBar'''
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
@@ -100,7 +110,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
 
-
         '''Status Bar'''
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatusdate, 2)
@@ -111,11 +120,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
         var.ui.btnBajaCli.clicked.connect(Products.Products.altaProducto)
 
-
-
-        '''Tabla Productos eventos'''
-        var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
-        var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 
         '''
       módulos de impresión
@@ -130,6 +134,7 @@ class Main(QtWidgets.QMainWindow):
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes()
         conexion.Conexion.mostrarProducts()
+        conexion.Conexion.mostrarFacturas()
         var.ui.TabWidget.setCurrentIndex(0)
 
     def closeEvent(self, event):
