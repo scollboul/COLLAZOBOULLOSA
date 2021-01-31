@@ -8,6 +8,7 @@ global dlgcalendar
 global filedlgabrir
 global dlgImprimir
 global rep
+global copia
 
 
 '''
@@ -24,3 +25,5 @@ variables base de datos
 
 filebd = 'empresa.db'
 global DATABASE
+
+

@@ -1,4 +1,8 @@
-import sys, var, vensalir, clients
+import sys, var, clients, conexion, zipfile, os, shutil
+from datetime import datetime
+from PyQt5 import QtWidgets
+
+from PyQt5.uic.properties import QtWidgets
 
 
 class Eventos():
@@ -34,10 +38,20 @@ class Eventos():
             print('Error: %s' % str(error))
 
     def Backup(self):
-        try:
-            print('hará copia de seguidad de la BBDD')
-        except Exception as error:
-            print('Error: %s' % str(error))
+            try:
+                fecha = datetime.today()
+                fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
+                var.copia = (str(fecha) + '_backup.zip')
+                directorio, filename = var.filedlgabrir.getSaveFileName(None, 'Guardar Copia', var.copia, '.zip')
+
+                if var.filedlgabrir.Accepted and filename != '':
+                    fichzip = zipfile.ZipFile(var.copia, 'w')
+                    fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
+                    fichzip.close()
+                    var.ui.lblstatus.setText('COPIA DE SEGURIDAD DE BASE DE DATOS CREADA')
+                    shutil.move(str(var.copia), str(directorio))
+            except Exception as error:
+                print('Error: %s' % str(error))
 
     def AbrirDir(self):
         try:

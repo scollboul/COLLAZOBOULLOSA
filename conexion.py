@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, QtSql
 import var
+import ventas
 from ventana import *
 
 
@@ -275,6 +276,13 @@ class Conexion():
             var.ui.lblstatus.setText('Alta factura del cliente con el DNI ' + str(factura[0]))
         else:
             print("Erro"+query.lastError().text())
+        query1=QtSql.QSqlQuery()
+        query1.prepare("select max(codfac) from facturas")
+        if query1.exec_():
+            while query1.next():
+                var.ui.lblFactura.setText(str(query.value(0)))
+                ventas.cargarFecha()
+        Conexion.mostrarFacturas()
 
     def mostrarFacturas():
         '''
@@ -315,6 +323,21 @@ class Conexion():
                 var.ui.EditDNICli.setText(str(query.value(0)))
                 var.ui.EditFechaFact.setText(str(query.value(1)))
                 var.ui.EditApelCli.setText(str(query.value(2)))
+
+    def BajaFactura(codigo):
+        ''''
+        modulo para eliminar cliente. se llama desde fichero clientes.py
+        :return None
+        '''
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from facturas where codfac = :codigo')
+        query.bindValue(':codigo', codigo)
+        if query.exec_():
+            var.ui.lblstatus.setText('Baja de la factura con el codigo: ' + codigo)
+        else:
+            print("Error eliminar factura: ", query.lastError().text())
+        Conexion.mostrarFacturas()
+
 # class Conexion():
 #     HOST='localhost'
 #     PORT='27017'

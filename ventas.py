@@ -29,6 +29,7 @@ class Ventas:
                 conexion.Conexion.altaFactura(newFact)
             else:
                 print('Faltan Datos')
+            conexion.Conexion.mostrarFacturas()
         except Exception as error:
             print('Error alta de la factura : %s ' % str(error))
 
@@ -47,3 +48,15 @@ class Ventas:
             conexion.Conexion.cargarFact(str(fila[0]))
         except Exception as error:
             print("Error al cargar factura: "+str(error))
+
+    def BajaFactura(self):
+        """
+        módulos para dar de baja un cliente
+        :return:
+        """
+        try:
+            codigo = var.ui.lblFactura.text()
+            conexion.Conexion.BajaFactura(codigo)
+            #Products.limpiarProd()
+        except Exception as error:
+            print('Error en la baja de facturas: %s ' % str(error))

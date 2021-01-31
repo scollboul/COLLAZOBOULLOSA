@@ -86,6 +86,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.btnCalendario.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnFacturar.clicked.connect(ventas.Ventas.altafactura)
+        var.ui.btnAnular.clicked.connect(ventas.Ventas.BajaFactura)
 
 
         '''Tabla clientes eventos'''
