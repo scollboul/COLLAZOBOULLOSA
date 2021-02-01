@@ -14,15 +14,19 @@ global copia
 '''
 variables de clientes
 '''
-
 global sex
 pay = []
 pay2 = []
 
+'''variables Ventas'''
+global subfact
+global fact
+global iva
+global cmbVenta
+global venta
 ''' 
 variables base de datos
 '''
-
 filebd = 'empresa.db'
 global DATABASE
 

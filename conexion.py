@@ -281,7 +281,6 @@ class Conexion():
         if query1.exec_():
             while query1.next():
                 var.ui.lblFactura.setText(str(query.value(0)))
-                ventas.cargarFecha()
         Conexion.mostrarFacturas()
 
     def mostrarFacturas():
@@ -290,8 +289,6 @@ class Conexion():
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un producto
         :return: None
         '''
-        # while var.ui.tableCli.rowCount() > 0:
-        #     var.ui.tableCli.removeRow(0)
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select codfac, fecha from facturas')
@@ -338,6 +335,49 @@ class Conexion():
             print("Error eliminar factura: ", query.lastError().text())
         Conexion.mostrarFacturas()
 
+    def BuscarfactCli(dni):
+        index = 0
+        cont = 0
+        query = QtSql.QSqlQuery()
+        query.prepare('select codfac, fecha from facturas where dni = :dni order by codfac desc')
+        query.bindValue(':dni', str(dni))
+        if query.exec_():
+            while query.next():
+                # cojo los valores
+                cont = cont + 1
+                codfac = query.value(0)
+                fecha = query.value(1)
+                # crea la fila
+                var.ui.tableFechaFact.setRowCount(index + 1)
+                # voy metiendo los datos en cada celda de la fila
+                var.ui.tableFechaFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codfac)))
+                var.ui.tableFechaFact.setItem(index, 1, QtWidgets.QTableWidgetItem(str(fecha)))
+                index += 1
+            if cont == 0:
+                var.ui.tableFechaFact.setRowCount(0)
+                var.ui.lblstatus.setText('Cliente sin Facturas')
+        else:
+            print("Error mostrar facturas cliente: ", query.lastError().text())
+
+
+    def cargarcmbVenta(cmbVenta):
+        var.cmbVenta.clear()
+        query= QtSql.QSqlQuery()
+        var.cmbVenta.addItem('')
+        query.prepare('select codigo, nombre from productos order by nombre')
+        if query.exec_():
+            while query.next():
+                var.cmbVenta.addItem(str(query.value(1)))
+
+    def ObterPrecio(art):
+        precio = []
+        query = QtSql.QSqlQuery()
+        query.prepare('select codigo, precio from productos where nombre = :art')
+        query.bindValue(':art',str(art))
+        if query.exec_():
+            while query.next():
+                precio=[str(query.value(0)), str(query.value(1))]
+        return precio
 # class Conexion():
 #     HOST='localhost'
 #     PORT='27017'

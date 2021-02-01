@@ -87,6 +87,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnCalendario.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnFacturar.clicked.connect(ventas.Ventas.altafactura)
         var.ui.btnAnular.clicked.connect(ventas.Ventas.BajaFactura)
+        var.ui.btnRefresh.clicked.connect(ventas.Ventas.reloadFact)
+        var.ui.btnBuscarFact.clicked.connect(ventas.Ventas.buscarfacClientes)
 
 
         '''Tabla clientes eventos'''
@@ -97,7 +99,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
         var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 
-        '''Tabla FacturaS eventos'''
+        '''Tabla Facturas eventos'''
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.cargarFactura)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 

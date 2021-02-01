@@ -1,5 +1,5 @@
 import var, conexion
-
+from PyQt5 import QtWidgets
 class Ventas:
     def cargarFecha(qDate):
         ''''
@@ -27,6 +27,8 @@ class Ventas:
                 newFact.append(i.text())  # cargamos los valores que hay en los editline
             if factura:
                 conexion.Conexion.altaFactura(newFact)
+                conexion.Conexion.mostrarFacturas()
+                Ventas.PrepararVentas(0)
             else:
                 print('Faltan Datos')
             conexion.Conexion.mostrarFacturas()
@@ -40,6 +42,9 @@ class Ventas:
         :return: none
         '''
         try:
+            var.subfact=0.00
+            var.fact=0.00
+            var.iva=0.00
             fila = var.ui.tableFechaFact.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
@@ -60,3 +65,55 @@ class Ventas:
             #Products.limpiarProd()
         except Exception as error:
             print('Error en la baja de facturas: %s ' % str(error))
+
+    def reloadFact():
+        '''
+        Limpia datos formulario y recarga la tabla de clientes
+        :return: None
+        '''
+        try:
+            Factura=[var.ui.EditDNICli,var.ui.EditApelCli,var.ui.EditFechaFact,var.ui.lblFactura]
+            for i,data in enumerate(Factura):
+                Factura[i].setText('')
+            conexion.Conexion.mostrarFacturas()
+        except Exception as error:
+            print('Error recargar facturas: %s ' % str(error))
+
+    def buscarfacClientes():
+        try:
+            dni = var.ui.EditDNICli.text()
+            conexion.Conexion.BuscarfactCli(dni)
+        except Exception as error:
+            print('Error buscar clientes: %s ' % str(error))
+
+    def PrepararVentas(index):
+        try:
+            var.cmbVenta=QtWidgets.QComboBox()
+            conexion.Conexion.cargarcmbVenta(var.cmbVenta)
+            var.ui.tabFact.setRowCount(index + 1)
+            var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem())
+            var.ui.tabFact.setCellWidget(index, 1, var.cmbVenta)
+            var.ui.tabFact.setItem(index, 2, QtWidgets.QTableWidgetItem())
+            var.ui.tabFact.setItem(index, 3, QtWidgets.QTableWidgetItem())
+            var.ui.tabFact.setItem(index, 4, QtWidgets.QTableWidgetItem())
+        except Exception as error:
+            print('Error en la preparecion de ventas: %s' % str(error))
+
+    def Vender(self):
+        try:
+            var.subfact=0.00
+            var.venta= []
+            codigofact=var.ui.lblFactura
+            var.venta.append(int(codigofact))
+            art=var.cmbVenta.currentText()
+            precio= conexion.Conexion.ObterPrecio(art)
+            var.venta.append(int(precio[0]))
+            var.venta.append(art)
+            row= var.ui.tabFact.currentRow()
+            cant= var.ui.tabFact.item(row,2).text()
+            cant=cant.replace(',','.')
+            var.venta.append(int(cant))
+
+        except Exception as error:
+            print('Error ventas'+str(error))
+

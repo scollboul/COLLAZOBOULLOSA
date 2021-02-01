@@ -981,7 +981,7 @@
          </property>
         </column>
        </widget>
-       <widget class="QTableWidget" name="tableFact">
+       <widget class="QTableWidget" name="tabFact">
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -1006,7 +1006,7 @@
         </column>
         <column>
          <property name="text">
-          <string>Articula</string>
+          <string>Articulo</string>
          </property>
          <property name="font">
           <font>
@@ -1655,11 +1655,11 @@
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>
