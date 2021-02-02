@@ -821,6 +821,11 @@ class Ui_venPrincipal(object):
         self.actionListado_productos.setObjectName("actionListado_productos")
         self.MenuBarReportProd = QtWidgets.QAction(venPrincipal)
         self.MenuBarReportProd.setObjectName("MenuBarReportProd")
+        self.ToollBarRecBackup = QtWidgets.QAction(venPrincipal)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/recubackup/recuperarbackup.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ToollBarRecBackup.setIcon(icon9)
+        self.ToollBarRecBackup.setObjectName("ToollBarRecBackup")
         self.menuArchivo.addAction(self.actionSalir)
         self.menuInformes.addAction(self.menubarReportCli)
         self.menuInformes.addAction(self.actionImprimir_factura)
@@ -832,6 +837,7 @@ class Ui_venPrincipal(object):
         self.toolBar.addAction(self.ToolBarAbrirDir)
         self.toolBar.addAction(self.ToolBarPrinter)
         self.toolBar.addAction(self.ToolBarBackup)
+        self.toolBar.addAction(self.ToollBarRecBackup)
         self.toolBar_2.addAction(self.ToolbarSalir)
 
         self.retranslateUi(venPrincipal)
@@ -929,10 +935,13 @@ class Ui_venPrincipal(object):
         self.actionImprimir_factura.setText(_translate("venPrincipal", "Imprimir factura"))
         self.actionListado_productos.setText(_translate("venPrincipal", "Listado productos"))
         self.MenuBarReportProd.setText(_translate("venPrincipal", "Listado Productos"))
+        self.ToollBarRecBackup.setText(_translate("venPrincipal", "Recuperar Base de Datos"))
+        self.ToollBarRecBackup.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/recubackup/recuperarbackup.png\"/></p></body></html>"))
 import Buscar_rc
 import aceptar_rc
 import calendario_rc
 import cancelar_rc
+import recuperarbackup_rc
 import reload_rc
 import toolBarPrinter_rc
 import toolabrirDir_rc

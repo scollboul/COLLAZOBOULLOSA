@@ -1706,6 +1706,7 @@
    <addaction name="ToolBarAbrirDir"/>
    <addaction name="ToolBarPrinter"/>
    <addaction name="ToolBarBackup"/>
+   <addaction name="ToollBarRecBackup"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
@@ -1809,6 +1810,18 @@
     <string>Listado Productos</string>
    </property>
   </action>
+  <action name="ToollBarRecBackup">
+   <property name="icon">
+    <iconset resource="img/recuperarbackup.qrc">
+     <normaloff>:/recubackup/recuperarbackup.png</normaloff>:/recubackup/recuperarbackup.png</iconset>
+   </property>
+   <property name="text">
+    <string>Recuperar Base de Datos</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/recubackup/recuperarbackup.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img/calendario.qrc"/>
@@ -1820,6 +1833,7 @@
   <include location="img/toolbarbackup.qrc"/>
   <include location="img/toolbarsalir.qrc"/>
   <include location="img/aceptar.qrc"/>
+  <include location="img/recuperarbackup.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

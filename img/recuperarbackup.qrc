@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="recubackup">
+    <file>recuperarbackup.png</file>
+  </qresource>
+</RCC>

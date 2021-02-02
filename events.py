@@ -66,3 +66,20 @@ class Eventos():
             var.dlgImprimir.show()
         except Exception as error:
             print('Error abrir imprimr: %s ' % str(error))
+
+    def restaurarBD(self):
+        try:
+            #option = QtWidgets.QFileDialog.Options()
+            filename = var.filedlgabrir.getOpenFileName(None, 'Restaurar Copia de Seguridade', '', '*.zip;;All Files')
+            if var.filedlgabrir.Accepted and filename != '':
+                file = filename[0]
+                with zipfile.ZipFile(str(file), 'r') as bbdd:
+                    bbdd.extractall(pwd=None)
+                bbdd.close()
+            conexion.Conexion.db_connect(var.filebd)
+            conexion.Conexion.mostrarClientes()
+            conexion.Conexion.mostrarProducts()
+            conexion.Conexion.mostrarFacturas()
+            var.ui.lblstatus.setText('COPIA DE SEGURIDAD RESTAURDA')
+        except Exception as error:
+            print('Error restaurar base de datos: %s ' % str(error))

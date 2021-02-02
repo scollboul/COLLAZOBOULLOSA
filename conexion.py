@@ -381,7 +381,7 @@ class Conexion():
         else:
             print("Error en la alta venta", query.lastError().text())
 
-    def BajaVenta(codigoventa):
+    def BajaVen(codigoventa):
         query=QtSql.QSqlQuery()
         query.prepare('delete from ventas where codventa = :codigoventa')
         if query.exec_():

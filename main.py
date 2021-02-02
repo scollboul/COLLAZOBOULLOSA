@@ -90,7 +90,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnRefresh.clicked.connect(ventas.Ventas.reloadFact)
         var.ui.btnBuscarFact.clicked.connect(ventas.Ventas.buscarfacClientes)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.venta)
-        var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta())
+        #var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta)
 
         '''Tabla clientes eventos'''
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
@@ -109,6 +109,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
         var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
+        var.ui.ToollBarRecBackup.triggered.connect(events.Eventos.restaurarBD)
 
         '''Menu bar'''
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
