@@ -42,18 +42,18 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_7">
-    <item row="2" column="0">
-     <spacer name="horizontalSpacer_3">
+    <item row="3" column="4">
+     <spacer name="verticalSpacer">
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Vertical</enum>
       </property>
       <property name="sizeType">
        <enum>QSizePolicy::Expanding</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>40</width>
-        <height>754</height>
+        <width>20</width>
+        <height>31</height>
        </size>
       </property>
      </spacer>
@@ -68,18 +68,34 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="4">
-     <spacer name="verticalSpacer">
+    <item row="2" column="7">
+     <spacer name="horizontalSpacer_4">
       <property name="orientation">
-       <enum>Qt::Vertical</enum>
+       <enum>Qt::Horizontal</enum>
       </property>
       <property name="sizeType">
        <enum>QSizePolicy::Expanding</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>20</width>
-        <height>31</height>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>754</height>
        </size>
       </property>
      </spacer>
@@ -100,23 +116,7 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="7">
-     <spacer name="horizontalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="6">
+    <item row="0" column="6" rowspan="3">
      <widget class="QTabWidget" name="TabWidget">
       <property name="enabled">
        <bool>true</bool>
@@ -143,7 +143,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="tabBarAutoHide">
        <bool>false</bool>
@@ -828,8 +828,8 @@
        <widget class="QLabel" name="lblfact">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>40</y>
+          <x>50</x>
+          <y>10</y>
           <width>71</width>
           <height>16</height>
          </rect>
@@ -841,8 +841,8 @@
        <widget class="QLabel" name="lblfechaFact">
         <property name="geometry">
          <rect>
-          <x>210</x>
-          <y>36</y>
+          <x>200</x>
+          <y>10</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -854,8 +854,8 @@
        <widget class="QLabel" name="lblCli">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>93</y>
+          <x>50</x>
+          <y>50</y>
           <width>47</width>
           <height>20</height>
          </rect>
@@ -867,8 +867,8 @@
        <widget class="QLineEdit" name="EditFechaFact">
         <property name="geometry">
          <rect>
-          <x>310</x>
-          <y>36</y>
+          <x>300</x>
+          <y>10</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -880,8 +880,8 @@
        <widget class="QLineEdit" name="EditDNICli">
         <property name="geometry">
          <rect>
-          <x>110</x>
-          <y>96</y>
+          <x>100</x>
+          <y>50</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -893,8 +893,8 @@
        <widget class="QLineEdit" name="EditApelCli">
         <property name="geometry">
          <rect>
-          <x>230</x>
-          <y>96</y>
+          <x>220</x>
+          <y>50</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -906,8 +906,8 @@
        <widget class="QLabel" name="lblFactura">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>30</y>
+          <x>130</x>
+          <y>10</y>
           <width>45</width>
           <height>32</height>
          </rect>
@@ -938,7 +938,7 @@
         <property name="geometry">
          <rect>
           <x>430</x>
-          <y>30</y>
+          <y>0</y>
           <width>31</width>
           <height>31</height>
          </rect>
@@ -960,8 +960,8 @@
        <widget class="QPushButton" name="btnFacturar">
         <property name="geometry">
          <rect>
-          <x>480</x>
-          <y>40</y>
+          <x>470</x>
+          <y>10</y>
           <width>75</width>
           <height>21</height>
          </rect>
@@ -973,8 +973,8 @@
        <widget class="QPushButton" name="btnAnular">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>40</y>
+          <x>560</x>
+          <y>10</y>
           <width>75</width>
           <height>21</height>
          </rect>
@@ -986,8 +986,8 @@
        <widget class="QPushButton" name="btnBuscarFact">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>90</y>
+          <x>340</x>
+          <y>40</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -1003,8 +1003,8 @@
        <widget class="QPushButton" name="btnRefresh">
         <property name="geometry">
          <rect>
-          <x>420</x>
-          <y>90</y>
+          <x>390</x>
+          <y>40</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -1020,8 +1020,8 @@
        <widget class="QTableWidget" name="tableFechaFact">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>130</y>
+          <x>40</x>
+          <y>80</y>
           <width>211</width>
           <height>501</height>
          </rect>
@@ -1058,9 +1058,9 @@
        <widget class="QTableWidget" name="tabFact">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>130</y>
-          <width>511</width>
+          <x>260</x>
+          <y>80</y>
+          <width>581</width>
           <height>501</height>
          </rect>
         </property>
@@ -1134,6 +1134,172 @@
           <set>AlignCenter</set>
          </property>
         </column>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>590</y>
+          <width>61</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SubTotal:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>750</x>
+          <y>620</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>I.V.A:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>750</x>
+          <y>650</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Total:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lblSubtotal">
+        <property name="geometry">
+         <rect>
+          <x>810</x>
+          <y>590</y>
+          <width>45</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 253, 217);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lblIVA">
+        <property name="geometry">
+         <rect>
+          <x>810</x>
+          <y>620</y>
+          <width>45</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 253, 217);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lblTotal">
+        <property name="geometry">
+         <rect>
+          <x>810</x>
+          <y>650</y>
+          <width>45</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 253, 217);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnAceptarventa">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>40</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img/aceptar.qrc">
+          <normaloff>:/aceptar/comprobado.png</normaloff>:/aceptar/comprobado.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnCancelar">
+        <property name="geometry">
+         <rect>
+          <x>760</x>
+          <y>40</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img/cancelar.qrc">
+          <normaloff>:/cancelar/cancelar.png</normaloff>:/cancelar/cancelar.png</iconset>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="panelPro">
@@ -1519,7 +1685,7 @@
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
     <property name="title">
-     <string>Acerca de</string>
+     <string>Ayuda</string>
     </property>
    </widget>
    <addaction name="menuArchivo"/>
@@ -1646,12 +1812,14 @@
  </widget>
  <resources>
   <include location="img/calendario.qrc"/>
+  <include location="img/cancelar.qrc"/>
   <include location="img/toolBarPrinter.qrc"/>
   <include location="img/toolabrirDir.qrc"/>
   <include location="img/reload.qrc"/>
   <include location="img/Buscar.qrc"/>
   <include location="img/toolbarbackup.qrc"/>
   <include location="img/toolbarsalir.qrc"/>
+  <include location="img/aceptar.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

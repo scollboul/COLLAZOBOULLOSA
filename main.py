@@ -89,7 +89,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAnular.clicked.connect(ventas.Ventas.BajaFactura)
         var.ui.btnRefresh.clicked.connect(ventas.Ventas.reloadFact)
         var.ui.btnBuscarFact.clicked.connect(ventas.Ventas.buscarfacClientes)
-
+        var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.venta)
+        var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta())
 
         '''Tabla clientes eventos'''
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
