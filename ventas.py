@@ -1,5 +1,6 @@
 import var, conexion
 from PyQt5 import QtWidgets
+
 class Ventas:
     def cargarFecha(qDate):
         ''''

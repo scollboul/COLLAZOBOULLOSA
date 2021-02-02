@@ -3,13 +3,19 @@ from ventana import *
 
 
 class Clientes():
-    """
-    eventos necesarios formulario clientes
-    """
+
     def validarDni(dni):
         """
-        Código que controla si el dni o nie es correcto
-        :return:
+        Modulo que valida la letra de un dni segun sea nacional o extranjero
+
+        :param a: dni formato texto
+        :type: string
+        :return: None
+        :rtype: bool
+
+        Pone la letra en mayusculas, comprueba que son nueve caracteres.Toma los 8 primeros, si es extranjero cambia la letra a su numero correspondiente.
+        Una vez hace esto suma los numero y los divide entre 23 y coje el resto para comprbar si el dni es correcto
+
         """
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
@@ -30,8 +36,13 @@ class Clientes():
 
     def validoDni():
         """
-        muestra mensaje de dni válido
+
+        Modulo que segun el dni sea correcto o no muestra una cosa o otra
+
         :return: none
+
+        Si es correcto muestra un label con forma de tick verde y si es falso lo como muestra una X roja
+
         """
         try:
             dni = var.ui.editDni.text()
@@ -50,6 +61,16 @@ class Clientes():
             return None
 
     def selSexo(self):
+        """
+        Modulo para definir el sexo del cliente
+
+        :return: none
+        :rtype: none
+
+        Modulo para añadir en la variable var.sex el sexo del cliente mediante un radiobutton.
+        Si esta seleccionado Femenino se añadira mujer y si esta Masculino se añadira hombre
+
+        """
         try:
             if var.ui.rbtFem.isChecked():
                 var.sex = 'Mujer'
@@ -59,11 +80,17 @@ class Clientes():
             print('Error: %s' % str(error))
 
     def selPago():
-        '''
-        chequea que valores de pago han sido activados
-        agrupamos en QtDesigner los checkbox en un ButtonGroup
-        :return: devuelve una lista de valores
-        '''
+        """
+
+        Modulo para seleccionar los metodos de pago del cliente
+
+        :return: Una lista de valores
+        :rtype: List
+
+        Añade en la variable var.pay los distisntos metodos de pago del cliente mediante ChekGroups
+
+
+        """
         try:
             var.pay = []
             for i, data in enumerate(var.ui.grpbtnPay.buttons()):
@@ -78,6 +105,16 @@ class Clientes():
             print('Error: %s' % str(error))
 
     def selProv(prov):
+        """
+
+        Al sleccionar una provincia en el combo de provincias
+
+        :param a: provincia seleccionada
+        :return:
+        :rtype:
+
+
+        """
         try:
             global vpro
             vpro = prov
@@ -85,18 +122,32 @@ class Clientes():
             print('Error: %s' % str(error))
 
     def abrirCalendar(self):
-        '''
-        Abrir la ventana calendario
-        '''
+        """
+
+        Modulo que abre la ventana calendario
+
+        """
+
+
+
         try:
             var.dlgcalendar.show()
         except Exception as error:
             print('Error: %s ' % str(error))
 
     def cargarFecha(qDate):
-        ''''
-        Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
-        '''
+        """
+
+        Modulo que carga la fecha marcada en el widget Calendar
+
+        :param a Libreria Python para el formateo de fechas
+        :return: None
+        :rtype: formato de fechas
+
+        A partir del evento Calendar.clicked.connect al clickear una fecha , caprtura y la carga en el
+        editFecha
+
+        """
         try:
             if var.ui.TabWidget.currentIndex() == 0:
                 data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
@@ -105,21 +156,28 @@ class Clientes():
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
-    def altaCliente(self):  #SE EJECUTA CON EL BOTÓN ACEPTAR
-        '''
-        cargará los clientes en la tabla y en la base de datos
-        cargará datos cliente en el resto widgets
-        en las búsquedas mostrará los datos del cliente
-        :return: none
-        '''
-        #preparamos el registro
+    def altaCliente(self):
+        """
+
+        Modulo qu carga los datos del cliente
+
+         :param a:None
+         :param b:None
+         :return:None
+
+         Se crea una lista newcli que contendra todos los datos del cliente que se introduzcan en los widgets
+         esta lista se pasa como argumento al modulo altaCli del modulo conexion.
+         El modulo llama a la funcion mostrarClientes que recarga la tabla con todos los clientes ademas del nuevo
+         EL modulo llama a la funcion limpiarCli que limpia el contenido de los widgets
+
+         """
         try:
-            newcli = [] #contiene todos los datos
-            clitab = []  #será lo que carguemos en la tablas
+            newcli = []
+            clitab = []
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             k = 0
             for i in client:
-                newcli.append(i.text())  #cargamos los valores que hay en los editline
+                newcli.append(i.text())
                 if k < 3:
                     clitab.append(i.text())
                     k += 1
@@ -130,8 +188,6 @@ class Clientes():
             edad = var.ui.spinEdad.value()
             newcli.append(edad)
             if client:
-            #comprobarmos que no esté vacío lo principal
-            #aquí empieza como trabajar con la TableWidget
                 row = 0
                 column = 0
                 var.ui.tableCli.insertRow(row)
@@ -140,9 +196,10 @@ class Clientes():
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
                 conexion.Conexion.altaCli(newcli)
+                conexion.Conexion.mostrarClientes()
+                Clientes.limpiarCli()
             else:
                 print('Faltan Datos')
-            #Clientes.limpiarCli()
         except Exception as error:
             print('Error alta cliente : %s ' % str(error))
 
