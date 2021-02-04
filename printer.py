@@ -8,7 +8,7 @@ import var
 class Printer():
     def cabecera():
         try:
-            logo='.\\img\printer.png'
+            logo='.\\img\logo.png'
             var.rep.setTitle('INFORMES')
             var.rep.setAuthor('Administracion Teis')
             var.rep.setFont('Helvetica',size=10)
@@ -22,7 +22,7 @@ class Printer():
             var.rep.drawString(54, 790,textnom)
             var.rep.drawString(54, 775, textdir)
             var.rep.drawString(54, 760, texttlfo)
-            var.rep.drawImage(logo, '450', '752')
+            var.rep.drawImage(logo, 450, 752)
         except Exception as error:
             print("Error cabercera informe: %s" %str(error))
 

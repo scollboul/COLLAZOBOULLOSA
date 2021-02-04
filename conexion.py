@@ -303,6 +303,7 @@ class Conexion():
                 var.ui.tableFechaFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                 var.ui.tableFechaFact.setItem(index, 1, QtWidgets.QTableWidgetItem(str(fecha)))
                 index += 1
+            ventas.Ventas.PrepararVentas(0)
         else:
             print("Error mostrar Facturas"": ", query.lastError().text())
 
@@ -424,7 +425,7 @@ class Conexion():
                         var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(subtot)))
                 index += 1
         else:
-            print("Error mostrar productos"": ", query.lastError().text())
+            print("Error mostrar productos"":  ", query.lastError().text())
 
     def cargarcmbVenta(cmbVenta):
         var.cmbVenta.clear()

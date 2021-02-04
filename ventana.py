@@ -33,20 +33,20 @@ class Ui_venPrincipal(object):
         self.gridLayout_7 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_7.setObjectName("gridLayout_7")
         spacerItem = QtWidgets.QSpacerItem(20, 31, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_7.addItem(spacerItem, 3, 4, 1, 1)
+        self.gridLayout_7.addItem(spacerItem, 5, 4, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 754, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem1, 4, 0, 1, 1)
         self.lblstatus = QtWidgets.QLabel(self.centralwidget)
         self.lblstatus.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignHCenter)
         self.lblstatus.setObjectName("lblstatus")
-        self.gridLayout_7.addWidget(self.lblstatus, 3, 6, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_7.addItem(spacerItem1, 2, 7, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 754, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_7.addItem(spacerItem2, 2, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.lblstatus, 5, 6, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem2, 4, 7, 1, 1)
         self.lblstatusdate = QtWidgets.QLabel(self.centralwidget)
         self.lblstatusdate.setMaximumSize(QtCore.QSize(500, 500))
         self.lblstatusdate.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing)
         self.lblstatusdate.setObjectName("lblstatusdate")
-        self.gridLayout_7.addWidget(self.lblstatusdate, 3, 7, 1, 1)
+        self.gridLayout_7.addWidget(self.lblstatusdate, 5, 7, 1, 1)
         self.TabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.TabWidget.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
@@ -769,7 +769,12 @@ class Ui_venPrincipal(object):
         self.EditStock.setStyleSheet("background-color: rgb(255, 255, 229);")
         self.EditStock.setObjectName("EditStock")
         self.TabWidget.addTab(self.panelPro, "")
-        self.gridLayout_7.addWidget(self.TabWidget, 0, 6, 3, 1)
+        self.gridLayout_7.addWidget(self.TabWidget, 4, 5, 1, 1)
+        self.lbllogo = QtWidgets.QLabel(self.centralwidget)
+        self.lbllogo.setText("")
+        self.lbllogo.setPixmap(QtGui.QPixmap(":/logo/logo.png"))
+        self.lbllogo.setObjectName("lbllogo")
+        self.gridLayout_7.addWidget(self.lbllogo, 0, 6, 1, 1)
         venPrincipal.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(venPrincipal)
         self.menuBar.setGeometry(QtCore.QRect(0, 0, 1278, 22))
@@ -841,7 +846,7 @@ class Ui_venPrincipal(object):
         self.toolBar_2.addAction(self.ToolbarSalir)
 
         self.retranslateUi(venPrincipal)
-        self.TabWidget.setCurrentIndex(1)
+        self.TabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(venPrincipal)
 
     def retranslateUi(self, venPrincipal):
@@ -941,6 +946,7 @@ import Buscar_rc
 import aceptar_rc
 import calendario_rc
 import cancelar_rc
+import logo_rc
 import recuperarbackup_rc
 import reload_rc
 import toolBarPrinter_rc
