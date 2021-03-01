@@ -21,7 +21,6 @@ class Products():
         except Exception as error:
             print('Error en la alta del producto : %s ' % str(error))
 
-
     def cargarProd():
         '''
         carga en widgets formulario cliente los datos

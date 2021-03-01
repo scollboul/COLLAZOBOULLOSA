@@ -90,7 +90,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnRefresh.clicked.connect(ventas.Ventas.reloadFact)
         var.ui.btnBuscarFact.clicked.connect(ventas.Ventas.buscarfacClientes)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.venta)
-        #var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta)
+        var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta)
 
         '''Tabla clientes eventos'''
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
@@ -103,7 +103,8 @@ class Main(QtWidgets.QMainWindow):
         '''Tabla Facturas eventos'''
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.cargarFactura)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-
+        var.ui.tabFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tabFact.clicked.connect(ventas.Ventas.mostrarVentasfac)
         ''' ToolBar'''
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
@@ -131,6 +132,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         var.ui.MenuBarReportProd.triggered.connect(printer.Printer.reportProduc)
+        var.ui.MenuBarReportFac.triggered.connect(printer.Printer.reportFac)
         '''
         
         módulos conexion base datos

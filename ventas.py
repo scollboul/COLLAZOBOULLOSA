@@ -63,7 +63,6 @@ class Ventas:
         try:
             codigo = var.ui.lblFactura.text()
             conexion.Conexion.BajaFactura(codigo)
-            #Products.limpiarProd()
         except Exception as error:
             print('Error en la baja de facturas: %s ' % str(error))
 
@@ -99,46 +98,56 @@ class Ventas:
             var.ui.tabFact.setItem(index, 4, QtWidgets.QTableWidgetItem())
         except Exception as error:
             print('Error en la preparecion de ventas: %s' % str(error))
+
     def BajaVenta():
         try:
             fila = var.ui.tabFact.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
-            codigoventa = int(fila[0])
+            codigoventa = str(fila[0])
             conexion.Conexion.BajaVen(codigoventa)
             conexion.Conexion.mostrarventas()
         except Exception as error:
-            print('Error proceso anular venta de una factura: %s' % str(error))
+            print('Error proceso baja venta: %s' % str(error))
+
     def venta(self):
         try:
             var.subfact=0.00
             var.venta= []
-            codigofact=var.ui.lblFactura
-            var.venta.append(int(codigofact))
+            codigofact=var.ui.lblFactura.text()
+            var.venta.append(str(codigofact))
             art=var.cmbVenta.currentText()
             codPrec = conexion.Conexion.ObterPrecio(art)
             var.venta.append(int(codPrec[0]))
             var.venta.append(art)
             row= var.ui.tabFact.currentRow()
-            cant= var.ui.tabFact.item(row,2).text()
-            cant=cant.replace(',','.')
+            cant= var.ui.tabFact.item(row, 2).text()
+            cant=cant.replace(',', '.')
             var.venta.append(int(cant))
-            precio =codPrec[1].replace(',','.')
-            var.venta.append(round(float(precio),2))
-            subtot= round(int(cant)*float(codPrec[1]),2)
+            precio = codPrec[1].replace(',', '.')
+            var.venta.append(round(float(precio), 2))
+            subtot= round(int(cant)*float(codPrec[1]), 2)
             var.venta.append(subtot)
             var.venta.append(row)
             if codigofact !='' and art !='' and cant !='':
                 conexion.Conexion.altaVenta()
-                var.subfact=round(float(var.subfact) + float(subtot))
+                var.subfact=round(float(var.subfact) + float(subtot),2)
                 var.ui.lblSubtotal.setText(str(var.subfact))
                 var.iva=round(float(subtot)*0.21,2)
                 var.ui.lblIVA.setText(str(var.iva))
                 var.fact=round(float(var.subfact)+float(var.iva),2)
                 var.ui.lblTotal.setText(str(var.fact))
-                conexion.Conexion.mostrarventas()
+                Ventas.mostrarVentasfac(self)
             else:
                 var.ui.lblstatus.setText("Faltan Datos")
         except Exception as error:
             print('Error ventas'+str(error))
 
+    def mostrarVentasfac(self):
+        try:
+            var.cmbVenta = QtWidgets.QComboBox()
+            conexion.Conexion.cargarcmbVenta(var.cmbVenta)
+            codigoFact = var.ui.lblFactura.text()
+            conexion.Conexion.mostrarventas(self, codigoFact)
+        except Exception as error:
+            print('Error proceso mostrar ventas por factura: %s' % str(error))

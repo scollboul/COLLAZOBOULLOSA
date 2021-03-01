@@ -143,7 +143,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="tabBarAutoHide">
        <bool>false</bool>
@@ -1690,7 +1690,7 @@
      <string>Informes</string>
     </property>
     <addaction name="menubarReportCli"/>
-    <addaction name="actionImprimir_factura"/>
+    <addaction name="MenuBarReportFac"/>
     <addaction name="MenuBarReportProd"/>
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
@@ -1805,7 +1805,7 @@
     <string>Listado Clientes</string>
    </property>
   </action>
-  <action name="actionImprimir_factura">
+  <action name="MenuBarReportFac">
    <property name="text">
     <string>Imprimir factura</string>
    </property>
@@ -1845,6 +1845,7 @@
   <include location="img/toolbarsalir.qrc"/>
   <include location="img/aceptar.qrc"/>
   <include location="img/recuperarbackup.qrc"/>
+  <include location="../../.designer/backup/img/logo.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

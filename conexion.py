@@ -335,6 +335,9 @@ class Conexion():
         else:
             print("Error eliminar factura: ", query.lastError().text())
         Conexion.mostrarFacturas()
+        var.ui.lblSubtotal.setText('0.00')
+        var.ui.lblIva.setText('0.00')
+        var.ui.lblTotal.setText('0.00')
 
     def BuscarfactCli(dni):
         index = 0
@@ -363,22 +366,22 @@ class Conexion():
     def altaVenta():
         query=QtSql.QSqlQuery()
         query.prepare('insert into ventas(codfacventa, codarticventa, cantidad, precio)'
-                      'VALUES(codfacventa, codarticventa, cantidad, precio)')
+                      'VALUES(:codfacventa, :codarticventa, :cantidad, :precio)')
         query.bindValue(':codfacventa', int(var.venta[0]))
         query.bindValue(':codarticventa', int(var.venta[1]))
         query.bindValue(':cantidad', int(var.venta[3]))
-        query.bindValue(':precio', int(var.venta[4]))
-        row= var.ui.tabFact.currentRow()
+        query.bindValue(':precio', float(var.venta[4]))
+        row = var.ui.tabFact.currentRow()
         if query.exec_():
-            var.ui.lblstatus.setText("Alta venta")
-            var.ui.tabFact.setItem(row,1, QtWidgets.QTableWidgetItem(str(var.venta[2])))
+            var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[2])))
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[3])))
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[4])))
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[5])))
-            row=+1
+            row =+1
             var.ui.tabFact.insertRow(row)
-            var.ui.tabFact.setCellWidget(row,1,var.cmbVenta)
+            var.ui.tabFact.setCellWidget(row, 1, var.cmbVenta)
             Conexion.cargarcmbVenta(var.cmbVenta)
+            var.ui.tabFact.scrollToBottom()
         else:
             print("Error en la alta venta", query.lastError().text())
 
@@ -390,42 +393,54 @@ class Conexion():
         else:
             print("Error eliminar venta: ",query.lastError().text())
 
-    def mostrarventas():
+    def mostrarventas(self, codigoFact):
         '''
         Carga los datos principales del productos la tabla
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un producto
         :return: None
         '''
-        codigoFact= var.ui.lblFactura
-        var.cmbVenta = QtWidgets.QComboBox()
-        Conexion.cargarcmbVenta(var.cmbVenta)
-        index = 0
-        query = QtSql.QSqlQuery()
-        query.prepare('select codventa, codarticventa, cantidad from ventas where codfacventa = :codigoFact')
-        if query.exec_():
-            while query.next():
-                # cojo los valores
-                codventa = query.value(0)
-                codart = query.value(1)
-                cantid = query.value(2)
-                # crea la fila
-                var.ui.tabFact.setRowCount(index + 1)
-                # voy metiendo los datos en cada celda de la fila
-                var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
-                query2=QtSql.QSqlQuery()
-                query2.prepare('select nombre, precio from productos where codigo=codart')
-                if query2.exec_():
-                    while query2.next():
-                        art= query2.value(0)
-                        prec = query2.value(1)
-                        subtot = round(float(cantid) * float(prec), 2)
-                        var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(art)))
-                        var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(cantid)))
-                        var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(prec)))
-                        var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(subtot)))
-                index += 1
-        else:
-            print("Error mostrar productos"":  ", query.lastError().text())
+        try:
+            var.subfact=0.00
+            query = QtSql.QSqlQuery()
+            query.prepare('select codventa, codarticventa, cantidad from ventas where codfacventa = :codigoFact')
+            if query.exec_():
+                index = 0
+                while query.next():
+                    # cojo los valores
+                    codventa = query.value(0)
+                    codarticulo = query.value(1)
+                    cant = query.value(2)
+                    precio = query.value(3)
+                    # crea la fila
+                    var.ui.tabFact.setRowCount(index + 1)
+                    # voy metiendo los datos en cada celda de la fila
+                    var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
+                    query2=QtSql.QSqlQuery()
+                    query2.prepare('select nombre from productos where codigo= :codarticulo')
+                    if query2.exec_():
+                        while query2.next():
+                            art= query2.value(0)
+                            var.ui.tabFact.setItem(index, 1, QtWidgets.QTableWidgetItem(str(art)))
+                            var.ui.tabFact.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cant)))
+                            subtot = round(float(cant) * float(precio), 2)
+                            var.ui.tabFact.setItem(index, 3, QtWidgets.QTableWidgetItem(str(precio)))
+                            var.ui.tabFact.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtot)))
+                    index += 1
+                    var.subfact=round(float(subtot)+float(var.subfact), 2)
+                    if index>0:
+                        ventas.Ventas.PrepararVentas(index)
+                    else:
+                        var.ui.tabVenta.setRowCount(0)
+                        ventas.Ventas.PrepararVentas(0)
+                    var.ui.lblSubtotal.setText(float(var.subfac))
+                    var.iva = round(float(var.subfac) * 0.21, 2)
+                    var.ui.lblIva.setText(float(var.iva))
+                    var.fac = round(float(var.iva) + float(var.subfac), 2)
+                    var.ui.lblTotal.setText(float(var.fac))
+            else:
+                print("Error mostrar productos"":  ", query.lastError().text())
+        except Exception as error:
+            print("Error al mostrar la tabla de ventas", str(error))
 
     def cargarcmbVenta(cmbVenta):
         var.cmbVenta.clear()
@@ -437,14 +452,14 @@ class Conexion():
                 var.cmbVenta.addItem(str(query.value(1)))
 
     def ObterPrecio(art):
-        precio = []
+        dato = []
         query = QtSql.QSqlQuery()
         query.prepare('select codigo, precio from productos where nombre = :art')
         query.bindValue(':art',str(art))
         if query.exec_():
             while query.next():
-                precio=[str(query.value(0)), str(query.value(1))]
-        return precio
+                dato=[str(query.value(0)), str(query.value(1))]
+        return dato
 
 # class Conexion():
 #     HOST='localhost'

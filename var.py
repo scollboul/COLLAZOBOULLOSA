@@ -24,6 +24,7 @@ global fact
 global iva
 global cmbVenta
 global venta
+global tabVenta
 ''' 
 variables base de datos
 '''
