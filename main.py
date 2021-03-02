@@ -103,8 +103,8 @@ class Main(QtWidgets.QMainWindow):
         '''Tabla Facturas eventos'''
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.cargarFactura)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        var.ui.tabFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        var.ui.tabFact.clicked.connect(ventas.Ventas.mostrarVentasfac)
+        var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tableFechaFact.clicked.connect(ventas.Ventas.mostrarVentasfac)
         ''' ToolBar'''
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)

@@ -181,9 +181,9 @@ class Conexion():
 
     def altaProducto(producto):
         query = QtSql.QSqlQuery()
-        query.prepare('insert into productos (nombre, precio, stock)'
-            'VALUES (:nombre, :precio, :stock)')
-        query.bindValue(':nombre', str(producto[0]))
+        query.prepare('insert into productos (producto, precio, stock)'
+            'VALUES (:producto, :precio, :stock)')
+        query.bindValue(':producto', str(producto[0]))
         query.bindValue(':precio', round(float(producto[1]), 2))
         query.bindValue(':stock', int(producto[2]))
         if query.exec_():
@@ -202,7 +202,7 @@ class Conexion():
         #     var.ui.tableCli.removeRow(0)
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select codigo, nombre, precio from productos order by nombre')
+        query.prepare('select codigo, producto, precio from productos order by producto')
         if query.exec_():
             while query.next():
                 # cojo los valores
@@ -211,6 +211,7 @@ class Conexion():
                 precio = query.value(2)
                 # crea la fila
                 var.ui.tableProd.setRowCount(index + 1)
+                # voy metiendo los datos en cada celda de la fila
                 # voy metiendo los datos en cada celda de la fila
                 var.ui.tableProd.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                 var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(producto))
@@ -225,7 +226,7 @@ class Conexion():
         :return: None
         '''
         query = QtSql.QSqlQuery()
-        query.prepare('select nombre, precio, stock from productos where codigo = :cod')
+        query.prepare('select producto, precio, stock from productos where codigo = :cod')
         query.bindValue(':cod', cod)
         if query.exec_():
             while query.next():
@@ -255,9 +256,9 @@ class Conexion():
         '''
         query = QtSql.QSqlQuery()
         codigo = codigo
-        query.prepare('update productos set nombre=:nombre, precio=:precio, stock=:stock where codigo=:codigo')
+        query.prepare('update productos set producto=:producto, precio=:precio, stock=:stock where codigo=:codigo')
         query.bindValue(':codigo', codigo)
-        query.bindValue(':nombre', str(newprod[0]))
+        query.bindValue(':producto', str(newprod[0]))
         query.bindValue(':precio', str(newprod[1]))
         query.bindValue(':stock', str(newprod[2]))
         if query.exec_():
@@ -377,7 +378,7 @@ class Conexion():
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[3])))
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[4])))
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[5])))
-            row =+1
+            row +=1
             var.ui.tabFact.insertRow(row)
             var.ui.tabFact.setCellWidget(row, 1, var.cmbVenta)
             Conexion.cargarcmbVenta(var.cmbVenta)
@@ -416,7 +417,7 @@ class Conexion():
                     # voy metiendo los datos en cada celda de la fila
                     var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
                     query2=QtSql.QSqlQuery()
-                    query2.prepare('select nombre from productos where codigo= :codarticulo')
+                    query2.prepare('select producto from productos where codigo= :codarticulo')
                     if query2.exec_():
                         while query2.next():
                             art= query2.value(0)
@@ -427,14 +428,14 @@ class Conexion():
                             var.ui.tabFact.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtot)))
                     index += 1
                     var.subfact=round(float(subtot)+float(var.subfact), 2)
-                    if index>0:
+                    if int(index)>0:
                         ventas.Ventas.PrepararVentas(index)
                     else:
                         var.ui.tabVenta.setRowCount(0)
                         ventas.Ventas.PrepararVentas(0)
                     var.ui.lblSubtotal.setText(float(var.subfac))
                     var.iva = round(float(var.subfac) * 0.21, 2)
-                    var.ui.lblIva.setText(float(var.iva))
+                    var.ui.lblIVA.setText(float(var.iva))
                     var.fac = round(float(var.iva) + float(var.subfac), 2)
                     var.ui.lblTotal.setText(float(var.fac))
             else:
@@ -446,7 +447,7 @@ class Conexion():
         var.cmbVenta.clear()
         query= QtSql.QSqlQuery()
         var.cmbVenta.addItem('')
-        query.prepare('select codigo, nombre from productos order by nombre')
+        query.prepare('select codigo, producto from productos order by producto')
         if query.exec_():
             while query.next():
                 var.cmbVenta.addItem(str(query.value(1)))
@@ -454,7 +455,7 @@ class Conexion():
     def ObterPrecio(art):
         dato = []
         query = QtSql.QSqlQuery()
-        query.prepare('select codigo, precio from productos where nombre = :art')
+        query.prepare('select codigo, precio from productos where producto = :art')
         query.bindValue(':art',str(art))
         if query.exec_():
             while query.next():

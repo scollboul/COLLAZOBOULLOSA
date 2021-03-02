@@ -128,7 +128,6 @@ class Ventas:
             var.venta.append(round(float(precio), 2))
             subtot= round(int(cant)*float(codPrec[1]), 2)
             var.venta.append(subtot)
-            var.venta.append(row)
             if codigofact !='' and art !='' and cant !='':
                 conexion.Conexion.altaVenta()
                 var.subfact=round(float(var.subfact) + float(subtot),2)
@@ -141,7 +140,7 @@ class Ventas:
             else:
                 var.ui.lblstatus.setText("Faltan Datos")
         except Exception as error:
-            print('Error ventas'+str(error))
+            print('Error ventas '+str(error))
 
     def mostrarVentasfac(self):
         try:
