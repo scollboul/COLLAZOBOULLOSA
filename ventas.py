@@ -99,14 +99,14 @@ class Ventas:
         except Exception as error:
             print('Error en la preparecion de ventas: %s' % str(error))
 
-    def BajaVenta():
+    def BajaVenta(self):
         try:
             fila = var.ui.tabFact.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
             codigoventa = str(fila[0])
             conexion.Conexion.BajaVen(codigoventa)
-            conexion.Conexion.mostrarventas()
+            conexion.Conexion.mostrarventas(self)
         except Exception as error:
             print('Error proceso baja venta: %s' % str(error))
 
@@ -115,7 +115,7 @@ class Ventas:
             var.subfact=0.00
             var.venta= []
             codigofact=var.ui.lblFactura.text()
-            var.venta.append(str(codigofact))
+            var.venta.append(int(codigofact))
             art=var.cmbVenta.currentText()
             codPrec = conexion.Conexion.ObterPrecio(art)
             var.venta.append(int(codPrec[0]))
@@ -128,10 +128,11 @@ class Ventas:
             var.venta.append(round(float(precio), 2))
             subtot= round(int(cant)*float(codPrec[1]), 2)
             var.venta.append(subtot)
+            var.venta.append(row)
             if codigofact !='' and art !='' and cant !='':
                 conexion.Conexion.altaVenta()
                 var.subfact=round(float(var.subfact) + float(subtot),2)
-                var.ui.lblSubtotal.setText(str(var.subfact))
+                var.ui.lblSubtotal.setText(str(subtot))
                 var.iva=round(float(subtot)*0.21,2)
                 var.ui.lblIVA.setText(str(var.iva))
                 var.fact=round(float(var.subfact)+float(var.iva),2)
@@ -147,6 +148,6 @@ class Ventas:
             var.cmbVenta = QtWidgets.QComboBox()
             conexion.Conexion.cargarcmbVenta(var.cmbVenta)
             codigoFact = var.ui.lblFactura.text()
-            conexion.Conexion.mostrarventas(self, codigoFact)
+            conexion.Conexion.mostrarventas(codigoFact)
         except Exception as error:
-            print('Error proceso mostrar ventas por factura: %s' % str(error))
+            print('Error proceso mostrar ventas: %s' % str(error))

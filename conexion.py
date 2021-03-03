@@ -394,7 +394,7 @@ class Conexion():
         else:
             print("Error eliminar venta: ",query.lastError().text())
 
-    def mostrarventas(self, codigoFact):
+    def mostrarventas(codigoFact):
         '''
         Carga los datos principales del productos la tabla
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un producto
@@ -403,7 +403,8 @@ class Conexion():
         try:
             var.subfact=0.00
             query = QtSql.QSqlQuery()
-            query.prepare('select codventa, codarticventa, cantidad from ventas where codfacventa = :codigoFact')
+            query.prepare('select codventa, codarticventa, cantidad, precio from ventas where codfacventa = :codigoFact')
+            query.bindValue(':codfac', str(codigoFact))
             if query.exec_():
                 index = 0
                 while query.next():
@@ -424,20 +425,20 @@ class Conexion():
                             var.ui.tabFact.setItem(index, 1, QtWidgets.QTableWidgetItem(str(art)))
                             var.ui.tabFact.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cant)))
                             subtot = round(float(cant) * float(precio), 2)
-                            var.ui.tabFact.setItem(index, 3, QtWidgets.QTableWidgetItem(str(precio)))
-                            var.ui.tabFact.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtot)))
+                            var.ui.tabFact.setItem(index, 3, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio)) + ' €'))
+                            var.ui.tabFact.setItem(index, 4, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtot))+ ' €'))
                     index += 1
                     var.subfact=round(float(subtot)+float(var.subfact), 2)
-                    if int(index)>0:
-                        ventas.Ventas.PrepararVentas(index)
-                    else:
-                        var.ui.tabVenta.setRowCount(0)
-                        ventas.Ventas.PrepararVentas(0)
-                    var.ui.lblSubtotal.setText(float(var.subfac))
-                    var.iva = round(float(var.subfac) * 0.21, 2)
-                    var.ui.lblIVA.setText(float(var.iva))
-                    var.fac = round(float(var.iva) + float(var.subfac), 2)
-                    var.ui.lblTotal.setText(float(var.fac))
+                if int(index)>0:
+                    ventas.Ventas.PrepararVentas(index)
+                else:
+                    var.ui.tabFact.setRowCount(0)
+                    ventas.Ventas.PrepararVentas(0)
+                var.ui.lblSubtotal.setText("{0:.2f}".format(float(var.subfact)))
+                var.iva = round(float(var.subfact) * 0.21, 2)
+                var.ui.lblIVA.setText("{0:.2f}".format(float(var.iva)))
+                var.fac = round(float(var.iva) + float(var.subfact), 2)
+                var.ui.lblTotal.setText("{0:.2f}".format(float(var.fact)))
             else:
                 print("Error mostrar productos"":  ", query.lastError().text())
         except Exception as error:

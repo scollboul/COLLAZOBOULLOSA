@@ -82,7 +82,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
 
         '''
-        Conecion a eventos de facturacion
+        Conexion a eventos de facturacion
         '''
         var.ui.btnCalendario.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnFacturar.clicked.connect(ventas.Ventas.altafactura)
@@ -104,7 +104,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.cargarFactura)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tabFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.mostrarVentasfac)
+
         ''' ToolBar'''
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
@@ -128,7 +130,7 @@ class Main(QtWidgets.QMainWindow):
 
 
         '''
-      módulos de impresión
+        módulos de impresión
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         var.ui.MenuBarReportProd.triggered.connect(printer.Printer.reportProduc)
