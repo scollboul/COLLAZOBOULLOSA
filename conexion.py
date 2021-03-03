@@ -374,15 +374,16 @@ class Conexion():
         query.bindValue(':precio', float(var.venta[4]))
         row = var.ui.tabFact.currentRow()
         if query.exec_():
+            var.ui.lblstatus.setText('Venta Realizada')
             var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[2])))
-            var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[3])))
-            var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[4])))
-            var.ui.tabFact.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[5])))
-            row +=1
+            var.ui.tabFact.setItem(row, 2, QtWidgets.QTableWidgetItem(str(var.venta[3])))
+            var.ui.tabFact.setItem(row, 3, QtWidgets.QTableWidgetItem(str(var.venta[4])))
+            var.ui.tabFact.setItem(row, 4, QtWidgets.QTableWidgetItem(str(var.venta[5])))
+            row=row+1
             var.ui.tabFact.insertRow(row)
             var.ui.tabFact.setCellWidget(row, 1, var.cmbVenta)
-            Conexion.cargarcmbVenta(var.cmbVenta)
             var.ui.tabFact.scrollToBottom()
+            Conexion.cargarcmbVenta(var.cmbVenta)
         else:
             print("Error en la alta venta", query.lastError().text())
 

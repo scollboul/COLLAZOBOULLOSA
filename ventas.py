@@ -115,7 +115,7 @@ class Ventas:
             var.subfact=0.00
             var.venta= []
             codigofact=var.ui.lblFactura.text()
-            var.venta.append(int(codigofact))
+            var.venta.append(str(codigofact))
             art=var.cmbVenta.currentText()
             codPrec = conexion.Conexion.ObterPrecio(art)
             var.venta.append(int(codPrec[0]))
@@ -137,7 +137,7 @@ class Ventas:
                 var.ui.lblIVA.setText(str(var.iva))
                 var.fact=round(float(var.subfact)+float(var.iva),2)
                 var.ui.lblTotal.setText(str(var.fact))
-                Ventas.mostrarVentasfac(self)
+                #Ventas.mostrarVentasfac(self)
             else:
                 var.ui.lblstatus.setText("Faltan Datos")
         except Exception as error:
