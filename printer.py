@@ -58,7 +58,7 @@ class Printer():
         try:
             var.rep = canvas.Canvas('informes/listadoclientes.pdf', pagesize=A4)
             listado = 'LISTADO DE CLIENTES'
-            Printer.cabecera()
+            Printer.cabecera(self)
             Printer.CabeceraCliente(listado)
             Printer.Pie(listado)
             query=QtSql.QSqlQuery()
@@ -107,11 +107,11 @@ class Printer():
         except Exception as error:
           print("Error en ls cabecera del cliente %s" %str(error))
 
-    def reportProduc(listado):
+    def reportProduc(self, listado):
         try:
             var.rep=canvas.Canvas('informes/listadoproductos.pdf', pagesize=A4)
             listado="Listado Productos"
-            Printer.cabecera()
+            Printer.cabecera(self)
             Printer.Pie(listado)
             Printer.CabeceraProducto(listado)
             query = QtSql.QSqlQuery()
@@ -124,7 +124,7 @@ class Printer():
                     if j <=80:
                         var.rep.drawString(440, 70, 'Página siguiente...')
                         var.rep.showPage()
-                        Printer.cabecera()
+                        Printer.cabecera(self)
                         Printer.Pie(listado)
                         Printer.CabeceraProducto(listado)
                         i = 55

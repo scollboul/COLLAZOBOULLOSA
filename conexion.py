@@ -390,6 +390,7 @@ class Conexion():
     def BajaVen(codigoventa):
         query=QtSql.QSqlQuery()
         query.prepare('delete from ventas where codventa = :codigoventa')
+        query.bindValue(':codVenta', codigoventa)
         if query.exec_():
             var.ui.lblstatus.setText("Venta eliminada")
         else:
@@ -416,7 +417,6 @@ class Conexion():
                     precio = query.value(3)
                     # crea la fila
                     var.ui.tabFact.setRowCount(index + 1)
-                    # voy metiendo los datos en cada celda de la fila
                     var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
                     query2=QtSql.QSqlQuery()
                     query2.prepare('select producto from productos where codigo= :codarticulo')
@@ -441,7 +441,7 @@ class Conexion():
                 var.fac = round(float(var.iva) + float(var.subfact), 2)
                 var.ui.lblTotal.setText("{0:.2f}".format(float(var.fact)))
             else:
-                print("Error mostrar productos"":  ", query.lastError().text())
+                print("Error mostrar ventas:  ", query.lastError().text())
         except Exception as error:
             print("Error al mostrar la tabla de ventas", str(error))
 

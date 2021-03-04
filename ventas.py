@@ -105,10 +105,11 @@ class Ventas:
             if fila:
                 fila = [dato.text() for dato in fila]
             codigoventa = str(fila[0])
+            print(codigoventa)
             conexion.Conexion.BajaVen(codigoventa)
             conexion.Conexion.mostrarventas(self)
         except Exception as error:
-            print('Error proceso baja venta: %s' % str(error))
+            print('Error baja venta: %s' % str(error))
 
     def venta(self):
         try:
@@ -137,13 +138,13 @@ class Ventas:
                 var.ui.lblIVA.setText(str(var.iva))
                 var.fact=round(float(var.subfact)+float(var.iva),2)
                 var.ui.lblTotal.setText(str(var.fact))
-                #Ventas.mostrarVentasfac(self)
+                Ventas.mostrarVentas(self)
             else:
                 var.ui.lblstatus.setText("Faltan Datos")
         except Exception as error:
             print('Error ventas '+str(error))
 
-    def mostrarVentasfac(self):
+    def mostrarVentas(self):
         try:
             var.cmbVenta = QtWidgets.QComboBox()
             conexion.Conexion.cargarcmbVenta(var.cmbVenta)

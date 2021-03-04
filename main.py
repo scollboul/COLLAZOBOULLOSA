@@ -105,7 +105,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tabFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        var.ui.tableFechaFact.clicked.connect(ventas.Ventas.mostrarVentasfac)
+        var.ui.tableFechaFact.clicked.connect(ventas.Ventas.mostrarVentas)
 
         ''' ToolBar'''
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
