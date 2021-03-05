@@ -403,7 +403,6 @@ class Conexion():
         :return: None
         '''
         try:
-            var.subfact=0.00
             query = QtSql.QSqlQuery()
             query.prepare('select codventa, codarticventa, cantidad, precio from ventas where codfacventa = :codigoFact')
             query.bindValue(':codfac', str(codigoFact))
@@ -412,8 +411,11 @@ class Conexion():
                 while query.next():
                     # cojo los valores
                     codventa = query.value(0)
+                    print(codventa)
                     codarticulo = query.value(1)
+                    print(codarticulo)
                     cant = query.value(2)
+                    print(cant)
                     precio = query.value(3)
                     # crea la fila
                     var.ui.tabFact.setRowCount(index + 1)
