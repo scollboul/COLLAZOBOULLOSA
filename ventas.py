@@ -104,12 +104,11 @@ class Ventas:
             fila = var.ui.tabFact.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
-            codigoventa = str(fila[0])
-            print(codigoventa)
+            codigoventa = int(fila[0])
             conexion.Conexion.BajaVen(codigoventa)
-            conexion.Conexion.mostrarventas(self)
+            Ventas.mostrarVentas(self)
         except Exception as error:
-            print('Error baja venta: %s' % str(error))
+            print('Error en la baja de la venta: %s' % str(error))
 
     def venta(self):
         try:
@@ -138,7 +137,7 @@ class Ventas:
                 var.ui.lblIVA.setText(str(var.iva))
                 var.fact=round(float(var.subfact)+float(var.iva),2)
                 var.ui.lblTotal.setText(str(var.fact))
-                #Ventas.mostrarVentas(self)
+                Ventas.mostrarVentas(self)
             else:
                 var.ui.lblstatus.setText("Faltan Datos")
         except Exception as error:
