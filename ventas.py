@@ -138,7 +138,7 @@ class Ventas:
                 var.ui.lblIVA.setText(str(var.iva))
                 var.fact=round(float(var.subfact)+float(var.iva),2)
                 var.ui.lblTotal.setText(str(var.fact))
-                Ventas.mostrarVentas(self)
+                #Ventas.mostrarVentas(self)
             else:
                 var.ui.lblstatus.setText("Faltan Datos")
         except Exception as error:
