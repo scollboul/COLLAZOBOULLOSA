@@ -831,10 +831,16 @@ class Ui_venPrincipal(object):
         icon9.addPixmap(QtGui.QPixmap(":/recubackup/recuperarbackup.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ToollBarRecBackup.setIcon(icon9)
         self.ToollBarRecBackup.setObjectName("ToollBarRecBackup")
+        self.MenubarReportProd = QtWidgets.QAction(venPrincipal)
+        self.MenubarReportProd.setObjectName("MenubarReportProd")
+        self.actionImportar_Datos = QtWidgets.QAction(venPrincipal)
+        self.actionImportar_Datos.setObjectName("actionImportar_Datos")
         self.menuArchivo.addAction(self.actionSalir)
         self.menuInformes.addAction(self.menubarReportCli)
         self.menuInformes.addAction(self.MenuBarReportFac)
-        self.menuInformes.addAction(self.MenuBarReportProd)
+        self.menuInformes.addAction(self.MenubarReportProd)
+        self.menuInformes.addSeparator()
+        self.menuInformes.addAction(self.actionImportar_Datos)
         self.menuBar.addAction(self.menuArchivo.menuAction())
         self.menuBar.addAction(self.menuInformes.menuAction())
         self.menuBar.addAction(self.menuAcerca_de.menuAction())
@@ -846,7 +852,7 @@ class Ui_venPrincipal(object):
         self.toolBar_2.addAction(self.ToolbarSalir)
 
         self.retranslateUi(venPrincipal)
-        self.TabWidget.setCurrentIndex(0)
+        self.TabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(venPrincipal)
 
     def retranslateUi(self, venPrincipal):
@@ -937,11 +943,13 @@ class Ui_venPrincipal(object):
         self.ToolBarPrinter.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/Imprimir/printer.png\"/></p></body></html>"))
         self.ToolBarPrinter.setShortcut(_translate("venPrincipal", "Ctrl+P"))
         self.menubarReportCli.setText(_translate("venPrincipal", "Listado Clientes"))
-        self.MenuBarReportFac.setText(_translate("venPrincipal", "Imprimir factura"))
+        self.MenuBarReportFac.setText(_translate("venPrincipal", "Imprimir Factura Cliente"))
         self.actionListado_productos.setText(_translate("venPrincipal", "Listado productos"))
         self.MenuBarReportProd.setText(_translate("venPrincipal", "Listado Productos"))
         self.ToollBarRecBackup.setText(_translate("venPrincipal", "Recuperar Base de Datos"))
         self.ToollBarRecBackup.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/recubackup/recuperarbackup.png\"/></p></body></html>"))
+        self.MenubarReportProd.setText(_translate("venPrincipal", "Imprimir Producto"))
+        self.actionImportar_Datos.setText(_translate("venPrincipal", "Importar Datos"))
 import Buscar_rc
 import aceptar_rc
 import calendario_rc

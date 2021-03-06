@@ -14,7 +14,7 @@ class Clientes():
         :rtype: bool
 
         Pone la letra en mayusculas, comprueba que son nueve caracteres.Toma los 8 primeros, si es extranjero cambia la letra a su numero correspondiente.
-        Una vez hace esto suma los numero y los divide entre 23 y coje el resto para comprbar si el dni es correcto
+        Una vez hace esto suma los numero y los divide entre 23 y coje el resto para comprbar si el dni es correcto.
 
         """
         try:
@@ -41,7 +41,7 @@ class Clientes():
 
         :return: none
 
-        Si es correcto muestra un label con forma de tick verde y si es falso lo como muestra una X roja
+        Si es correcto muestra un label con forma de tick verde y si es falso lo como muestra una X roja.
 
         """
         try:
@@ -68,7 +68,7 @@ class Clientes():
         :rtype: none
 
         Modulo para añadir en la variable var.sex el sexo del cliente mediante un radiobutton.
-        Si esta seleccionado Femenino se añadira mujer y si esta Masculino se añadira hombre
+        Si esta seleccionado Femenino se añadira mujer y si esta Masculino se añadira hombre.
 
         """
         try:
@@ -87,7 +87,7 @@ class Clientes():
         :return: Una lista de valores
         :rtype: List
 
-        Añade en la variable var.pay los distisntos metodos de pago del cliente mediante ChekGroups
+        Añade en la variable var.pay los distisntos metodos de pago del cliente mediante ChekGroups.
 
 
         """
@@ -127,9 +127,6 @@ class Clientes():
         Modulo que abre la ventana calendario
 
         """
-
-
-
         try:
             var.dlgcalendar.show()
         except Exception as error:
@@ -145,7 +142,7 @@ class Clientes():
         :rtype: formato de fechas
 
         A partir del evento Calendar.clicked.connect al clickear una fecha , caprtura y la carga en el
-        editFecha
+        editFecha.
 
         """
         try:
@@ -159,7 +156,7 @@ class Clientes():
     def altaCliente(self):
         """
 
-        Modulo qu carga los datos del cliente
+        Modulo que carga los datos del cliente
 
          :param a:None
          :param b:None
@@ -167,8 +164,7 @@ class Clientes():
 
          Se crea una lista newcli que contendra todos los datos del cliente que se introduzcan en los widgets
          esta lista se pasa como argumento al modulo altaCli del modulo conexion.
-         El modulo llama a la funcion mostrarClientes que recarga la tabla con todos los clientes ademas del nuevo
-         EL modulo llama a la funcion limpiarCli que limpia el contenido de los widgets
+         EL modulo llama a la funcion limpiarCli que limpia el contenido de los widgets.
 
          """
         try:
@@ -196,7 +192,6 @@ class Clientes():
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
                 conexion.Conexion.altaCli(newcli)
-                conexion.Conexion.mostrarClientes()
                 Clientes.limpiarCli()
             else:
                 print('Faltan Datos')
@@ -205,14 +200,20 @@ class Clientes():
 
     def limpiarCli():
         '''
-        limpia los datos del formulario cliente
+
+        Modulo que limpia los datos del formulario cliente
+
         :return: none
+
+        Limpia los datos de los widgets Cliente poniendo los edittexts  y los labels en blnaco y poniendo a false
+        los radiobuttons y checkboxs.
+
         '''
         try:
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             for i in range(len(client)):
                 client[i].setText('')
-            var.ui.grpbtnSex.setExclusive(False)  #necesario para los radiobutton
+            var.ui.grpbtnSex.setExclusive(False)
             for dato in var.rbtsex:
                 dato.setChecked(False)
             for data in var.chkpago:
@@ -224,11 +225,18 @@ class Clientes():
             print('Error limpiar widgets: %s ' % str(error))
 
     def cargarCli():
-        '''
-        carga en widgets formulario cliente los datos
-        elegidos en la tabla
+        """
+
+        Modulo que carga en los widgets los datos del cliente elegido
+
         :return: none
-        '''
+        :rtype: None
+
+        Se activa con el evento  clicked.connec y setSelectionBehavior del widget TtableCli.
+        LLama al evento Conexion.cargarCliente que devuelve los datos del cliente seleccionado
+        haciendo una llamda a la BBDD.
+
+        """
         try:
             fila = var.ui.tableCli.selectedItems()
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome ]
@@ -247,8 +255,15 @@ class Clientes():
 
     def bajaCliente(self):
         """
-        módulos para dar de baja un cliente
-        :return:
+        Modulo que da de baja un cliente a partir del dni y recarga la tablaClu con los datos actualizados
+
+        :return: None
+        :rtype: None
+
+        Toma el dni cargado en el widget editDN se los pasa a Conexion.bajaCli y da de baja el cliente
+        Muestra los datos actualizados llamando al modulo Conexion.mostrarClientes()
+        Limipia los datos del formulario y recarga la tablaCli.
+
         """
         try:
             dni = var.ui.editDni.text()
@@ -260,14 +275,22 @@ class Clientes():
 
 
     def modifCliente(self):
-        """Módulos para modificar datos de un cliente con determinado código
+        """
+
+        Modulo para modifar datos de un cliente con un determinado codigo
+
         :return: None
+        :rtype: None
+
+        A partir del codigo del cliente, lee los nuevos datos de los widgets que se han cargado y modificado,
+        llama al modilo Conexion.ModifCli para actualizar los datos en la BBDD pasandole una lista con los nuevos datos.
+
         """
         try:
             newdata = []
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             for i in client:
-                newdata.append(i.text())  # cargamos los valores que hay en los editline
+                newdata.append(i.text())
             newdata.append(var.ui.cmbProv.currentText())
             newdata.append(var.sex)
             var.pay = Clientes.selPago()
@@ -282,10 +305,13 @@ class Clientes():
             print('Error modifcar clientes: %s ' % str(error))
 
     def reloadCli():
-        '''
-        Limpia datos formulario y recarga la tabla de clientes
+        """
+        Modulo que limpia los datos del formulario y recarga la tablacli llamando al modulo Conexion.mostrarClientes
+
         :return: None
-        '''
+        :rtype:
+        """
+
         try:
             print(var.ui.spinEdad.value())
             Clientes.limpiarCli()
@@ -296,16 +322,28 @@ class Clientes():
     def buscarCli(self):
         """
         Busca un Cliente a partir de un dni que escribe el usuario
+
         :return: mensaje
+        :rtype: None
+
+        Toma el dni del widget editDni y llama a Conexion.buscaCli a la cual se le pasa el dni
+
         """
         try:
-            #Clientes.limpiarCli()
             dni = var.ui.editDni.text()
             conexion.Conexion.buscaCli(dni)
         except Exception as error:
             print('Error buscar clientes: %s ' % str(error))
 
     def valoresSpin():
+        """
+        Modulo que se lanza al lanzarse el porgrama cargando por defecto el valor 16 en
+        spinEdadd
+
+        :return:
+        :rtype:
+
+        """
         try:
             var.ui.spinEdad.setValue(16)
         except Exception as error:

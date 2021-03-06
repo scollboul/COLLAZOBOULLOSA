@@ -1691,7 +1691,9 @@
     </property>
     <addaction name="menubarReportCli"/>
     <addaction name="MenuBarReportFac"/>
-    <addaction name="MenuBarReportProd"/>
+    <addaction name="MenubarReportProd"/>
+    <addaction name="separator"/>
+    <addaction name="actionImportar_Datos"/>
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
     <property name="title">
@@ -1807,7 +1809,7 @@
   </action>
   <action name="MenuBarReportFac">
    <property name="text">
-    <string>Imprimir factura</string>
+    <string>Imprimir Factura Cliente</string>
    </property>
   </action>
   <action name="actionListado_productos">
@@ -1832,6 +1834,16 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/recubackup/recuperarbackup.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
+  <action name="MenubarReportProd">
+   <property name="text">
+    <string>Imprimir Producto</string>
+   </property>
+  </action>
+  <action name="actionImportar_Datos">
+   <property name="text">
+    <string>Importar Datos</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img/calendario.qrc"/>
@@ -1845,7 +1857,6 @@
   <include location="img/toolbarsalir.qrc"/>
   <include location="img/aceptar.qrc"/>
   <include location="img/recuperarbackup.qrc"/>
-  <include location="../../.designer/backup/img/logo.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

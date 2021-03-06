@@ -1,8 +1,10 @@
+
+"""
+
+variables auxiliares y de  ventenas
+
+"""
 global ui
-#a continuación listas de los rbtbutton y check pago
-global rbtsex
-global chkpago
-#las dos siguientes son ventanas dialogo
 global dlgsalir
 global dlgcalendar
 global filedlgabrir
@@ -11,23 +13,34 @@ global rep
 global copia
 
 
-'''
+"""
+
 variables de clientes
-'''
+
+"""
+global rbtsex
+global chkpago
 global sex
 pay = []
 pay2 = []
 
-'''variables Ventas'''
+"""
+
+variables de Ventas
+
+"""
 global subfact
 global fact
 global iva
 global cmbVenta
 global venta
 global tabVenta
-''' 
+
+"""
+
 variables base de datos
-'''
+
+"""
 filebd = 'empresa.db'
 global DATABASE
 

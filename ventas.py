@@ -3,9 +3,13 @@ from PyQt5 import QtWidgets
 
 class Ventas:
     def cargarFecha(qDate):
-        ''''
+
+        """
+
         Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
-        '''
+
+        """
+
         try:
             if var.ui.TabWidget.currentIndex() == 1:
                 data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
@@ -15,17 +19,22 @@ class Ventas:
             print('Error cargar fecha: %s ' % str(error))
 
     def altafactura(self):
-        '''
-        cargará los proudctos en la tabla y en la base de datos
-        en las búsquedas mostrará los datos del cliente
+        """
+
+        Modulo que da de alta las facturas
+
         :return: none
-        '''
+        :rtype None
+
+        carga de los widgets los valores para dar de alta una factura y muestra la tabla facturas actualizada
+        y prepara la tabla para las ventas
+
+        """
         try:
             newFact = []
             factura = [var.ui.EditDNICli, var.ui.EditFechaFact, var.ui.EditApelCli]
-            k = 0
             for i in factura:
-                newFact.append(i.text())  # cargamos los valores que hay en los editline
+                newFact.append(i.text())
             if factura:
                 conexion.Conexion.altaFactura(newFact)
                 conexion.Conexion.mostrarFacturas()
@@ -37,11 +46,16 @@ class Ventas:
             print('Error alta de la factura : %s ' % str(error))
 
     def cargarFactura():
-        '''
-        carga en widgets formulario cliente los datos
-        elegidos en la tabla
+        """
+
+        carga en los widgets del formulario factura los datos de la factura clickada en
+        en la tabla
+
         :return: none
-        '''
+        :rtype None
+
+        """
+
         try:
             var.subfact=0.00
             var.fact=0.00

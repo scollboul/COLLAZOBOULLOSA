@@ -7,6 +7,14 @@ import var
 
 class Printer():
     def cabecera(self):
+        """
+
+        Modulo que imprimir la cabecera de todos los informes de la empresa
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             logo='.\\img\logo.png'
             var.rep.setTitle('INFORMES')
@@ -28,6 +36,17 @@ class Printer():
 
 
     def Pie(listado):
+        """
+
+        Modulo para imprimir el pie del imforme. Es igual sempre execpto el nombre pasado
+        a traves de listado
+
+        :param listado: segun de lo que se vaya a hacer el informe
+        :type listado:String
+        :return: None
+        :rtype: None
+
+        """
         try:
             var.rep.line(50,50,525,50)
             fecha=datetime.today()
@@ -40,6 +59,14 @@ class Printer():
             print("Errorenel pie de pagina: %s" % str(error))
 
     def CabeceraCliente(listado):
+        """
+
+        Modulo que carga la cabecera del cliente
+
+        :return: None
+        rtype: None
+
+        """
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
             var.rep.drawString(255,735, listado)
@@ -55,6 +82,20 @@ class Printer():
             print("Error en cabecera cliente : %s " % str(error))
 
     def reportCli(self):
+        """
+
+        Modulo para hacer el informe del cliente. Llama a la base de datos y captura
+        los datos y los muiestra enel informe
+
+        :return:
+        :rtype:
+
+        La variable i son los valores del eje X
+        La variable J son los valores del eje Y
+        Los imformes se guardan en lac carpeta informe y los muetsra con el lector de PDF´s
+        por defecto en el sistema
+
+        """
         try:
             var.rep = canvas.Canvas('informes/listadoclientes.pdf', pagesize=A4)
             listado = 'LISTADO DE CLIENTES'
@@ -65,15 +106,15 @@ class Printer():
             query.prepare('select codigo, dni, apellidos , nombre, fechalta  from clientes order by  nombre')
             var.rep.setFont('Helvetica',size=10)
             if query.exec_():
-                i=55 #eje x
-                j=690 #eje y
+                i=55
+                j=690
                 while query.next():
                     if j <=80:
                         var.rep.drawString(440, 70, 'Página siguiente...')
                         var.rep.showPage()
-                        Printer.cabecera()
+                        Printer.cabecera(self)
                         Printer.Pie(listado)
-                        Printer.CabeceraCliente()
+                        Printer.CabeceraCliente(listado)
                         i = 55
                         j = 690
                     var.rep.setFont('Helvetica',size=10)
@@ -84,16 +125,28 @@ class Printer():
                     var.rep.drawRightString(i+465,j, str(query.value(4)))
                     j=j-25
             var.rep.save()
-            rootPath=".\\informes"
-            cont=0
+            rootPath = ".\\informes"
+            cont = 0
             for file in os.listdir(rootPath):
-                if file.endswith('listadoclientes.pdf'):
-                    os.startfile("%s %s" % (rootPath,file))
-                cont= cont+1
+                if file.endswith('clientes.pdf'):
+                    os.startfile("%s/%s" % (rootPath, file))
+                cont = cont + 1
         except Exception as error:
             print('Error reporcli %s' % str(error))
 
     def CabeceraProducto(listado):
+        """
+
+        Modulo que imprime la cabecera de imforme de productos.
+
+
+        :param listado: es el nombre que se va imprimir
+        :type listado : String
+        :return: None
+        :rtype: None
+
+        """
+
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
             var.rep.drawString(255, 735, listado)
@@ -107,7 +160,7 @@ class Printer():
         except Exception as error:
           print("Error en ls cabecera del cliente %s" %str(error))
 
-    def reportProduc(self, listado):
+    def reportProduc(self):
         try:
             var.rep=canvas.Canvas('informes/listadoproductos.pdf', pagesize=A4)
             listado="Listado Productos"
@@ -115,7 +168,7 @@ class Printer():
             Printer.Pie(listado)
             Printer.CabeceraProducto(listado)
             query = QtSql.QSqlQuery()
-            query.prepare('select codigo, nombre, precio , stock from productos order by codigo')
+            query.prepare('select codigo, producto, precio, stock from productos order by codigo')
             var.rep.setFont('Helvetica', size=10)
             if query.exec_():
                 i = 55
@@ -139,23 +192,27 @@ class Printer():
             rootPath = ".\\informes"
             cont = 0
             for file in os.listdir(rootPath):
-                if file.endswith('listadoproductos.pdf'):
-                    os.startfile("%s %s" % (rootPath, file))
+                if file.endswith('productos.pdf'):
+                    os.startfile("%s/%s" % (rootPath, file))
                 cont = cont + 1
         except Exception as error:
             print("Error en report Productos "+ str(error))
 
 
     def cabecerafac(codfac):
-        '''
-        Módulo que carga la cabecera de página del informe factura
+        """
+
+        Módulo que carga la cabecera  informe factura
         :param codfac: el código de la factura
         :type: int
         :return: None
         :rtype: None
-        Toma datos de dos tablas. Los del cliente a la que está asociado el código factura y la de la tabla
-        facturas para tomar los datos de dni y fecha.
-        '''
+
+        Toma datos de las tablas cliente a la que está asociado el código factura
+        y de la tabla facturas para tomar los datos de dni y fecha.
+        Recibe el codfac de reportfact.
+
+        """
         try:
             var.rep.setFont('Helvetica-Bold', size=11)
             var.rep.drawString(55, 725, 'Cliente: ')
@@ -178,38 +235,40 @@ class Printer():
             if query1.exec_():
                 while query1.next():
                     var.rep.drawString(55, 695, str(query1.value(0)) + ', ' + str(query1.value(1)))
-                    var.rep.drawString(300, 695, 'Formas de Pago: ')
                     var.rep.drawString(55, 680, str(query1.value(2)) + ' - ' + str(query1.value(3)))
-                    var.rep.drawString(300, 680, str(query1.value(4).strip('[]').replace('\'', '').replace(',', ' -')))  #\ caracter escape indica que lo siguiente tiene un significado especial
+                    var.rep.drawString(400, 695, 'Formas de Pago: ')
+                    var.rep.drawString(375, 680, str(query1.value(4).strip('[]').replace('\'', '').replace(',', ' -')))
             var.rep.line(45, 625, 525, 625)
             var.rep.setFont('Helvetica-Bold', size=10)
-            temven = ['CodVenta', 'Artículo', 'Cantidad', 'Precio-Unidad(€)', 'Subtotal(€)']
-            var.rep.drawString(50, 630, temven[0])
-            var.rep.drawString(140, 630, temven[1])
-            var.rep.drawString(275, 630, temven[2])
-            var.rep.drawString(360, 630, temven[3])
-            var.rep.drawString(470, 630, temven[4])
+            itenventa = ['CodVenta', 'Artículo', 'Cantidad', 'Precio-Unidad(€)', 'Subtotal(€)']
+            var.rep.drawString(45, 630, itenventa[0])
+            var.rep.drawString(130, 630, itenventa[1])
+            var.rep.drawString(270, 630, itenventa[2])
+            var.rep.drawString(350, 630, itenventa[3])
+            var.rep.drawString(455, 630, itenventa[4])
             var.rep.setFont('Helvetica-Bold', size=12)
-            var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(
-                var.ui.lblSubtotal.text())) + ' €')
-            var.rep.drawRightString(500, 140, 'IVA:     ' + "{0:.2f}".format(float(var.ui.lblIva.text())) + ' €')
+            var.rep.drawRightString(500, 160, 'Subtotal:' + "{0:.2f}".format(float(var.ui.lblSubtotal.text())) + ' €')
+            var.rep.drawRightString(500, 140, 'IVA:' + "{0:.2f}".format(float(var.ui.lblIVA.text())) + ' €')
             var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(
                 var.ui.lblTotal.text())) + ' €')
         except Exception as error:
             print('Error cabecfac %s' % str(error))
 
     def reportFac(self):
-        '''
-        Módulo que carga el cuerpo del informe de la factura
+        """
+        Modulo que hace el imforme de la factura por cliente
+
         :return: None
         :rtype: None
-        Selecciona todas las ventas de esa factura y las va anotando línea a línea:
+
+        Selecciona todas las ventas de la factura seleccionada  y las las muestra
         la variable i represnta los valores del eje X,
         la variable j representa los valores del eje Y
-        Además tiene un pié de informe para mostrar los subtotales, iva y total
-        '''
+        En el pie del imforme de la factura tiene el subtotal, el iva y el total
+
+        """
         try:
-            textlistado = 'FACTURA'
+            textlistado = 'FACTURA CLIENTE'
             var.rep = canvas.Canvas('informes/factura.pdf', pagesize=A4)
             Printer.cabecera(self)
             Printer.Pie(textlistado)
@@ -232,7 +291,8 @@ class Printer():
                         j = 600
                     var.rep.setFont('Helvetica', size=10)
                     var.rep.drawString(i, j, str(query.value(0)))
-                    articulo = Printer.artLinVenta(str(query.value(1)))
+                    cod= str(query.value(1))
+                    articulo = Printer.articulo(cod)
                     var.rep.drawString(i + 85, j, str(articulo))
                     var.rep.drawRightString(i + 245, j, str(query.value(2)))
                     var.rep.drawRightString(i + 355, j, "{0:.2f}".format(float(query.value(3))))
@@ -251,23 +311,25 @@ class Printer():
         except Exception as error:
             print('Error reporfac %s' % str(error))
 
-    def artLinVenta(codigo):
-        '''
-        Módulo que toma el nombre del artículo a partir de su código
-        :param: codigo código del artículo
+    def articulo(codigo):
+        """
+
+        Módulo que toma el nombre del artículo a partir del codigo para que los muestre la factura
+
+        :param: codigo: código del artículo
         :type: int
         :return: artículo
         :rtype: string
-        Este módulo permite en el cuerpo de la factura que se muestre el nombre del artículo y no su código
-        '''
+
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare('select producto from productos where codigo = :codigo')
             query.bindValue(':codigo', int(codigo))
             if query.exec_():
                 while query.next():
-                    articulo = query.value(0)
-            return articulo
-
+                    dato = query.value(0)
+            return dato
         except Exception as error:
             print('Error artículo según código:  %s ' % str(error))

@@ -6,15 +6,23 @@ from datetime import datetime, date
 import sys, var, events, clients, conexion, printer, Products, ventas
 
 class DialogSalir(QtWidgets.QDialog):
+    """
+
+    Clase que isntancia la venta de aviso salir
+
+    """
     def __init__(self):
         super(DialogSalir, self).__init__()
         var.dlgsalir= Ui_dlgsalir()
         var.dlgsalir.setupUi(self)
         var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
-        #var.dlgsadlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
-        #no es neceasario no quiero que haga nada
 
 class DialogCalendar(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la venta de calendario
+
+    """
     def __init__(self):
         super(DialogCalendar, self).__init__()
         var.dlgcalendar = Ui_dlgCalendar()
@@ -27,18 +35,45 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.clicked.connect(ventas.Ventas.cargarFecha)
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
+    """
+
+    Clase que instancia la venta de diectorios
+
+    """
+
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
         self.setWindowTitle('Abrir Archivo')
         self.setModal(True)
 
 class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
+    """
+
+    Clase que instancia la venta de impresion
+
+    """
+
     def __init__(self):
         super(PrintDialogAbrir, self).__init__()
 
 class Main(QtWidgets.QMainWindow):
+    """
+
+    Clase main. Instancia todas las ventanas del programa
+    Conecta todos los eventos de los botones, tablas y otros widgets
+    Cuando se lanza se conecta con la BDDD y muestra todos los articulo, factura y clientes
+    de la BBDD en las ventanas que les corresponden
+
+    """
+
     def __init__(self):
         super(Main, self).__init__()
+
+        """
+        
+        Instancia todas las ventanas auxiliares
+        
+        """
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
@@ -46,9 +81,11 @@ class Main(QtWidgets.QMainWindow):
         var.filedlgabrir = FileDialogAbrir()
         var.dlgImprimir = PrintDialogAbrir()
 
-        '''
-        colección de datos
-        '''
+        """
+        
+        listas que contiene los valores de checkbox y radiobuton
+        
+        """
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
         var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
         clients.Clientes.valoresSpin()
@@ -60,9 +97,11 @@ class Main(QtWidgets.QMainWindow):
             i.stateChanged.connect(clients.Clientes.selPago)
         events.Eventos.cargarProv(self)
         '''
+        
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
         botones formulario cliente
+        
         '''
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
@@ -72,18 +111,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
-        '''
-        Conecion eventos de productos
-        '''
         var.ui.btnAltaProd.clicked.connect(Products.Products.altaProducto)
         var.ui.btnLimpiarProd.clicked.connect(Products.Products.limpiarProd)
         var.ui.btnBajaProd.clicked.connect(Products.Products.BajaProd)
         var.ui.btnModifProd.clicked.connect(Products.Products.ModificarProd)
         var.ui.btnSalirProd.clicked.connect(events.Eventos.Salir)
-
-        '''
-        Conexion a eventos de facturacion
-        '''
         var.ui.btnCalendario.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnFacturar.clicked.connect(ventas.Ventas.altafactura)
         var.ui.btnAnular.clicked.connect(ventas.Ventas.BajaFactura)
@@ -92,33 +124,38 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.venta)
         var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta)
 
-        '''Tabla clientes eventos'''
+        """
+        
+        Conexion con los eventos de las tablas clientes, productos,facturacion
+        
+        """
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-
-        '''Tabla Productos eventos'''
         var.ui.tableProd.clicked.connect(Products.Products.cargarProd)
         var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-
-        '''Tabla Facturas eventos'''
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.cargarFactura)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tableFechaFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tabFact.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.mostrarVentas)
 
-        ''' ToolBar'''
+        """
+        ToolBar Y Menubar
+        
+        """
         var.ui.ToolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.ToolBarBackup.triggered.connect(events.Eventos.Backup)
         var.ui.ToolBarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
         var.ui.ToollBarRecBackup.triggered.connect(events.Eventos.restaurarBD)
-
-        '''Menu bar'''
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-        #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
 
-        '''Status Bar'''
+
+        """
+        
+        Satus Bar
+        
+        """
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.statusBar.addPermanentWidget(var.ui.lblstatusdate, 2)
         var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
@@ -130,17 +167,20 @@ class Main(QtWidgets.QMainWindow):
 
 
         '''
+        
         módulos de impresión
+        
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
-        var.ui.MenuBarReportProd.triggered.connect(printer.Printer.reportProduc)
+        var.ui.MenubarReportProd.triggered.connect(printer.Printer.reportProduc)
         var.ui.MenuBarReportFac.triggered.connect(printer.Printer.reportFac)
-        '''
+
+        """
         
         módulos conexion base datos
-        '''
+        
+        """
         conexion.Conexion.db_connect(var.filebd)
-        # conexion.Conexion()
         conexion.Conexion.mostrarClientes()
         conexion.Conexion.mostrarProducts()
         conexion.Conexion.mostrarFacturas()
