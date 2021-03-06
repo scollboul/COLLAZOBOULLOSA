@@ -629,22 +629,3 @@ class Conexion():
             while query.next():
                 var.cmbVenta.addItem(str(query.value(1)))
 
-    def ObterPrecio(art):
-        """
-
-        Modulo que nos permite averiguar el codigo y precio de un articulo pasado
-
-        :param art: articulo del cual queremos saber el codigo y el precio
-        :type art:
-        :return: dato
-        :rtype: Lista
-
-        """
-        dato = []
-        query = QtSql.QSqlQuery()
-        query.prepare('select codigo, precio from productos where producto = :art')
-        query.bindValue(':art',str(art))
-        if query.exec_():
-            while query.next():
-                dato=[str(query.value(0)), str(query.value(1))]
-        return dato

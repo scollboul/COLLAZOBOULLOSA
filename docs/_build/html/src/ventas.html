@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ventas module &#8212; documentación de PROYECTO DAM 20_21 - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-ventas">
+<span id="ventas-module"></span><h1>ventas module<a class="headerlink" href="#module-ventas" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="ventas.Ventas">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ventas.</span></code><code class="sig-name descname"><span class="pre">Ventas</span></code><a class="reference internal" href="../_modules/ventas.html#Ventas"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="ventas.Ventas.BajaFactura">
+<code class="sig-name descname"><span class="pre">BajaFactura</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.BajaFactura"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.BajaFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>módulos para dar de baja una factura segun su codigo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>none</p>
+</dd>
+</dl>
+<p>:rtype None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.BajaVenta">
+<code class="sig-name descname"><span class="pre">BajaVenta</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.BajaVenta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.BajaVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.ObterCodPrecio">
+<code class="sig-name descname"><span class="pre">ObterCodPrecio</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.ObterCodPrecio"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.ObterCodPrecio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que nos permite averiguar el codigo y precio de un articulo pasado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>art</strong> – articulo del cual queremos saber el codigo y el precio</p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>dato</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>Lista</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.PrepararVentas">
+<code class="sig-name descname"><span class="pre">PrepararVentas</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.PrepararVentas"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.PrepararVentas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que prepara la tabla tabFact.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>index es la fila de la tabla</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Carga el combobox de de articulos e inserta una vila en la tabla tabFact</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.altafactura">
+<code class="sig-name descname"><span class="pre">altafactura</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.altafactura"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.altafactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que da de alta las facturas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>none</p>
+</dd>
+</dl>
+<p>:rtype None</p>
+<p>carga de los widgets los valores para dar de alta una factura y muestra la tabla facturas actualizada
+y prepara la tabla para las ventas</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.buscarfacClientes">
+<code class="sig-name descname"><span class="pre">buscarfacClientes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.buscarfacClientes"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.buscarfacClientes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Buscar facturas de un cliente por su DNI</p>
+<p>return: none
+:rtype None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.cargarFactura">
+<code class="sig-name descname"><span class="pre">cargarFactura</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.cargarFactura"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.cargarFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>carga en los widgets del formulario factura los datos de la factura clickada en
+en la tabla</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>none</p>
+</dd>
+</dl>
+<p>:rtype None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.cargarFecha">
+<code class="sig-name descname"><span class="pre">cargarFecha</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.cargarFecha"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.cargarFecha" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.mostrarVentas">
+<code class="sig-name descname"><span class="pre">mostrarVentas</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.mostrarVentas"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.mostrarVentas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo para mostrar las ventas en la tabla tabFact</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+<p>Recoge el codigo de la factura y se lo pasa a Conexion.mostrarventas</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.reloadFact">
+<code class="sig-name descname"><span class="pre">reloadFact</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.reloadFact"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.reloadFact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Limpia datos del formulario de facturas y de las ventas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>none</p>
+</dd>
+</dl>
+<p>:rtype None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.venta">
+<code class="sig-name descname"><span class="pre">venta</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.venta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#ventas.Ventas.venta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo para el proceso de alta de una venta</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Recoge en la variable venta todos los datos necesarios para su alta, recogiendo el codigo de facturacion
+del lblFactura,el precio y codigo del producto de la tabla de productos, asi como la cantidad que
+se recoge directamente de la tabla TabFact y el prodeucto que se recoge del combobox cmbVenta que contiene
+los artiulos.
+Antes de hacer el proceso del alta se comprueba que se han añadido los campos necesarios, si no es asi muestra
+un mensaje en la barra de estado.
+Mostrara la tabla de las ventas actualizadas.
+Y de alta la venta y añade una nueva fila a la tabal de ventas</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PROYECTO DAM 20_21</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, SamuelCollazo Boullosa.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/ventas.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
