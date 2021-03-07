@@ -140,6 +140,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableFechaFact.clicked.connect(ventas.Ventas.mostrarVentas)
 
         """
+        
         ToolBar Y Menubar
         
         """
