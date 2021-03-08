@@ -150,7 +150,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.ToolBarPrinter.triggered.connect(events.Eventos.AbrirPrinter)
         var.ui.ToollBarRecBackup.triggered.connect(events.Eventos.restaurarBD)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importardatos)
+        var.ui.actionImportar_Datos.triggered.connect(events.Eventos.ImportarDatos)
 
         """
         

@@ -135,17 +135,16 @@ class Eventos():
         except Exception as error:
             print('Error restaurar base de datos: %s ' % str(error))
 
-    def importardatos(self):
-        documento = xlrd.open_workbook("MercaEstadisticas.xls")
-        productos= documento.sheet_by_index(0)
-        ringleiras = productos.nrows
-        columnas= productos.ncols
-        newProd=[]
+    def ImportarDatos(self):
         try:
-            for i in range(1,ringleiras):
-                ringleira= productos.row_values(i)
-                newProd.append(ringleira)
-                print(newProd)
-                conexion.Conexion.altaProducto(newProd)
+            filename = var.filedlgabrir.getOpenFileName(None, 'Importar datos', '', '*.xls')
+            if var.filedlgabrir.Accepted and filename != '':
+                documento = xlrd.open_workbook(filename[0])
+                productos = documento.sheet_by_index(0)
+                ringleiras = productos.nrows
+                for i in range(1, ringleiras):
+                    ringleira = productos.row_values(i)
+                    conexion.Conexion.altaProducto(ringleira)
+            var.ui.lblstatus.setText('Datos Importados')
         except Exception as error:
-            print("Error imporar datos", error)
+            print('Error importar datos %s' %str(error))
