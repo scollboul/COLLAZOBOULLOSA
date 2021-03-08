@@ -220,7 +220,6 @@ class Conexion():
                 if 'Transferencia' in query.value(8):
                     var.chkpago[2].setChecked(True)
                 var.ui.spinEdad.setValue(query.value(9))
-
                 var.ui.tableCli.setRowCount(index + 1)
                 # voy metiendo los datos en cada celda de la fila
                 var.ui.tableCli.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
@@ -352,7 +351,7 @@ class Conexion():
         if query.exec_():
             var.ui.lblstatus.setText('Modificado el producto con el codigo ' + codigo )
         else:
-            print("Error al modificar el Producto",+query.lastError().text())
+            print("Error al modificar el Producto", query.lastError().text())
 
     """
     Gestion de factura
