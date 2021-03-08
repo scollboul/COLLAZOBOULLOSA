@@ -1,6 +1,8 @@
 import sys, var, clients, conexion, zipfile, os, shutil
 from datetime import datetime
+import xlrd
 from PyQt5 import QtWidgets
+
 
 from PyQt5.uic.properties import QtWidgets
 
@@ -132,3 +134,18 @@ class Eventos():
             var.ui.lblstatus.setText('COPIA DE SEGURIDAD RESTAURDA')
         except Exception as error:
             print('Error restaurar base de datos: %s ' % str(error))
+
+    def importardatos(self):
+        documento = xlrd.open_workbook("MercaEstadisticas.xls")
+        productos= documento.sheet_by_index(0)
+        ringleiras = productos.nrows
+        columnas= productos.ncols
+        newProd=[]
+        try:
+            for i in range(1,ringleiras):
+                ringleira= productos.row_values(i)
+                newProd.append(ringleira)
+                print(newProd)
+                conexion.Conexion.altaProducto(newProd)
+        except Exception as error:
+            print("Error imporar datos", error)

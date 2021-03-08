@@ -249,7 +249,7 @@ class Conexion():
             'VALUES (:producto, :precio, :stock)')
         query.bindValue(':producto', str(producto[0]))
         query.bindValue(':precio', round(float(producto[1]), 2))
-        query.bindValue(':stock', int(producto[2]))
+        query.bindValue(':stock', float(producto[2]))
         if query.exec_():
             var.ui.lblstatus.setText('Alta de producto  ' + str(producto[0]))
         else:

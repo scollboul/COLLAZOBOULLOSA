@@ -45,7 +45,7 @@ class MyTestCase(unittest.TestCase):
     def test_venta(self):
         valor = 27.22
         codfact = 101
-        codigoVenta=1082
+        codigoVenta=1084
         try:
             msg = 'Calculos incorrectos'
             var.subfact = 0.00
