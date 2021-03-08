@@ -113,7 +113,7 @@ class Eventos():
         :return: None
         :rtype: None
 
-        Abre la ventaba de dialogo para buscar su localizacion y las restaura usanso la libreria
+        Abre la ventana de dialogo para buscar su localizacion y las restaura usanso la libreria
         zipfile.
         Muestra mensaje de comfirmacion en la barra de estado
 
@@ -136,6 +136,16 @@ class Eventos():
             print('Error restaurar base de datos: %s ' % str(error))
 
     def ImportarDatos(self):
+        """
+
+        Modulo para importar datos desde un excel
+
+        :return:
+        :rtype:
+
+        Abre la ventana de dialogo para buscar su localizacion y importa en la tabla de productos
+
+        """
         try:
             filename = var.filedlgabrir.getOpenFileName(None, 'Importar datos', '', '*.xls')
             if var.filedlgabrir.Accepted and filename != '':
