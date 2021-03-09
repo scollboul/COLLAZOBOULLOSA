@@ -214,7 +214,14 @@ class Ventas:
             codigoFact = var.ui.lblFactura.text()
             conexion.Conexion.mostrarventas(codigoFact)
         except Exception as error:
-            print('Error proceso mostrar ventas: %s' % str(error))
+            print('Error mostrar ventas: %s' % str(error))
+
+    def Descuento():
+        try:
+            codigoFact = var.ui.lblFactura.text()
+            conexion.Conexion.mostrarventascondescuento(codigoFact)
+        except Exception as error:
+            print('Error descuento ventas: %s' % str(error))
 
     def ObterCodPrecio(art):
         """

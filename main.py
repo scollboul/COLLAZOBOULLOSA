@@ -3,7 +3,7 @@ from ventana import *
 from vensalir import *
 from vencalendar import *
 from datetime import datetime, date
-import sys, var, events, clients, conexion, printer, Products, ventas
+import sys, var, events, clients, conexion, printer, Products, ventas, provider
 
 class DialogSalir(QtWidgets.QDialog):
     """
@@ -123,7 +123,23 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBuscarFact.clicked.connect(ventas.Ventas.buscarfacClientes)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.venta)
         var.ui.btnCancelar.clicked.connect(ventas.Ventas.BajaVenta)
+        var.ui.BtnControlStock.clicked.connect(Products.Products.ControlStock)
+        var.ui.BtnReloadProd.clicked.connect(conexion.Conexion.mostrarProducts)
+        var.ui.BtnDescuento.clicked.connect(ventas.Ventas.Descuento)
 
+        """
+        
+        Botones proveedores
+        
+        """
+        var.ui.btnAltaProv.clicked.connect(provider.Provider.altaProveedor)
+        var.ui.TableProveedores.clicked.connect(provider.Provider.cargarProd)
+        var.ui.TableProveedores.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.btnSalirProv.clicked.connect(events.Eventos.Salir)
+        conexion.Conexion.mostrarProvedrores()
+        var.ui.btnBajaPrd.clicked.connect(provider.Provider.BajaProv)
+        var.ui.btnModifCli.clicked.connect(provider.Provider.ModificarProd)
+        var.ui.btnProv.clicked.connect(provider.Provider.limpiarProv)
         """
         
         Conexion con los eventos de las tablas clientes, productos,facturacion
@@ -175,6 +191,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         var.ui.MenubarReportProd.triggered.connect(printer.Printer.reportProduc)
         var.ui.MenuBarReportFac.triggered.connect(printer.Printer.reportFac)
+        var.ui.actionListado_Proveedores.triggered.connect(printer.Printer.ReportProvedorees)
 
         """
         

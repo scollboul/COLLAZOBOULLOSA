@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtSql
+from  PyQt5 import  QtSql
 import var
 import ventas
 from ventana import *
@@ -279,6 +279,24 @@ class Conexion():
                 index += 1
         else:
             print("Error mostrar productos"": ", query.lastError().text())
+
+    def ControlStcok(Stock):
+        index = 0
+        query = QtSql.QSqlQuery()
+        query.prepare('select codigo, producto, precio from productos WHERE stock < :Stock')
+        query.bindValue(':Stock', str(Stock))
+        if query.exec_():
+            while query.next():
+                codigo = query.value(0)
+                producto = query.value(1)
+                precio = query.value(2)
+                var.ui.tableProd.setRowCount(index + 1)
+                var.ui.tableProd.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(producto))
+                var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
+                index += 1
+        else:
+            print("Error en el control de stock"": ", query.lastError().text())
 
     def cargarProd(cod):
         """
@@ -609,6 +627,51 @@ class Conexion():
         except Exception as error:
             print('Error Listado de la tabla de ventas: %s ' % str(error))
 
+    def mostrarventascondescuento(codfac):
+        try:
+            var.ui.tabFact.clearContents()
+            var.subfact = 0.00
+            query = QtSql.QSqlQuery()
+            query1 = QtSql.QSqlQuery()
+            query.prepare('select codventa, codarticventa, cantidad, precio from ventas where codfacventa = :codfac')
+            query.bindValue(':codfac', int(codfac))
+            if query.exec_():
+                index = 0
+                while query.next():
+                    codventa = query.value(0)
+                    codarticventa = query.value(1)
+                    cantidad = query.value(2)
+                    precio = query.value(3)
+                    var.ui.tabFact.setRowCount(index + 1)
+                    var.ui.tabFact.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
+                    query1.prepare('select producto from productos where codigo = :codarticventa')
+                    query1.bindValue(':codarticventa', int(codarticventa))
+                    if query1.exec_():
+                        while query1.next():
+                            articulo = query1.value(0)
+                            var.ui.tabFact.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
+                            var.ui.tabFact.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
+                            subtotal = round(float(cantidad) * float(precio), 2)
+                            var.ui.tabFact.setItem(index, 3,
+                                                   QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio)) + ' €'))
+                            var.ui.tabFact.setItem(index, 4,
+                                                   QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtotal)) + ' €'))
+                    index += 1
+                    var.subfact = round(float(subtotal) + float(var.subfact), 2)
+            if int(index) > 0:
+                ventas.Ventas.PrepararVentas(index)
+            else:
+                var.ui.tabFact.setRowCount(0)
+                ventas.Ventas.PrepararVentas(0)
+            var.ui.lblSubtotal.setText("{0:.2f}".format(float(var.subfact)))
+            var.iva = round(float(var.subfact) * 0.21, 2)
+            var.ui.lblIVA.setText("{0:.2f}".format(float(var.iva)))
+            var.fact = round(((float(var.iva) + float(var.subfact))-var.fact*0.10), 2)
+            var.ui.lblTotal.setText("{0:.2f}".format(float(var.fact)))
+
+        except Exception as error:
+            print('Error Listado de la tabla de ventas con descuento: %s ' % str(error))
+
     def cargarcmbVenta(cmbVenta):
         """
 
@@ -627,4 +690,73 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.cmbVenta.addItem(str(query.value(1)))
+
+
+    """
+    
+    Gestion de proveedores
+    
+    """
+    def altaproveedor(newProv):
+        query = QtSql.QSqlQuery()
+        query.prepare('insert into Proveedores (Nombre, Telefono)'
+                  'VALUES (:Nombre, :Telefono)')
+        query.bindValue(':Nombre', str(newProv[0]))
+        query.bindValue(':Telefono', str(newProv[1]))
+        if query.exec_():
+            var.ui.lblstatus.setText('Alta de proveedore  ' + str(newProv[0]))
+        else:
+            print("Erro" + query.lastError().text())
+
+    def mostrarProvedrores():
+        index = 0
+        query = QtSql.QSqlQuery()
+        query.prepare('select Codigo, Nombre, Telefono from Proveedores')
+        if query.exec_():
+            while query.next():
+                cod= query.value(0)
+                nomb=query.value(1)
+                tel=query.value(2)
+                var.ui.TableProveedores.setRowCount(index+1)
+                var.ui.TableProveedores.setItem(index, 0, QtWidgets.QTableWidgetItem(str(cod)))
+                var.ui.TableProveedores.setItem(index, 1, QtWidgets.QTableWidgetItem(nomb))
+                var.ui.TableProveedores.setItem(index, 2, QtWidgets.QTableWidgetItem(tel))
+                index += 1
+        else:
+            print("Error mostrar provedores"": ", query.lastError().text())
+
+    def cargarProv(cod):
+        query = QtSql.QSqlQuery()
+        query.prepare('select Nombre, Telefono from Proveedores where Codigo = :cod')
+        query.bindValue(':cod', cod)
+        if query.exec_():
+            while query.next():
+                var.ui.lblProve.setText(str(cod))
+                var.ui.editNomeProv.setText(str(query.value(0)))
+                var.ui.EditTelProv.setText(str(query.value(1)))
+        else:
+            print("Error cargar provedores", query.lastError().text())
+
+    def BajaProveedor(codigo):
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from Proveedores where Codigo = :codigo')
+        query.bindValue(':codigo', codigo)
+        if query.exec_():
+            var.ui.lblstatus.setText('Baja del proveedor con el codigo ' + codigo )
+        else:
+            print("Error eliminar Proveedor: ", query.lastError().text())
+        Conexion.mostrarProvedrores()
+
+    def ModificarProveedores(codigo, newprov):
+        query = QtSql.QSqlQuery()
+        codigo = codigo
+        query.prepare('update Proveedores set Nombre=:Nombre, Telefono=:Telefono where Codigo=:codigo')
+        query.bindValue(':codigo', codigo)
+        query.bindValue(':Nombre', str(newprov[0]))
+        query.bindValue(':Telefono', int(newprov[1]))
+        if query.exec_():
+            var.ui.lblstatus.setText('Modificado del proveedor con el codigo ' + codigo)
+        else:
+            print("Error al modificar el Producto", query.lastError().text())
+
 

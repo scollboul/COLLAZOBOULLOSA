@@ -3,7 +3,6 @@ from datetime import datetime
 import xlrd
 from PyQt5 import QtWidgets
 
-
 from PyQt5.uic.properties import QtWidgets
 
 

@@ -311,6 +311,68 @@ class Printer():
         except Exception as error:
             print('Error reporfac %s' % str(error))
 
+    def CabeceraPoveedore(listado):
+        """
+
+        Modulo que imprime la cabecera de imforme de productos.
+
+
+        :param listado: es el nombre que se va imprimir
+        :type listado : String
+        :return: None
+        :rtype: None
+
+        """
+
+        try:
+            var.rep.setFont('Helvetica-Bold', size=9)
+            var.rep.drawString(255, 735, listado)
+            var.rep.line(45, 730, 525, 730)
+            itemProd = ['CODIGO', 'NOMBRE', 'TELEFONO']
+            var.rep.drawString(75, 710, itemProd[0])
+            var.rep.drawString(250, 710, itemProd[1])
+            var.rep.drawString(400, 710, itemProd[2])
+            var.rep.line(45, 703, 525, 703)
+        except Exception as error:
+            print("Error en ls cabecera del cliente %s" % str(error))
+
+    def ReportProvedorees(self):
+        try:
+            var.rep = canvas.Canvas('informes/proveedores.pdf', pagesize=A4)
+            listado="Listado Provedores"
+            Printer.cabecera(self)
+            Printer.Pie(listado)
+            Printer.CabeceraPoveedore(listado)
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT Codigo, Nombre ,Telefono from Proveedores ORDER By nombre')
+            var.rep.setFont('Helvetica', size=10)
+            if query.exec_():
+                i = 90
+                j = 690
+                while query.next():
+                    if j <=80:
+                        var.rep.drawString(440, 70, 'Página siguiente...')
+                        var.rep.showPage()
+                        Printer.cabecera(self)
+                        Printer.Pie(listado)
+                        Printer.CabeceraPoveedore(listado)
+                        i = 55
+                        j = 690
+                    var.rep.setFont('Helvetica', size=10)
+                    var.rep.drawString(i, j, str(query.value(0)))
+                    var.rep.drawString(i+160, j, str(query.value(1)))
+                    var.rep.drawString(i+310, j, str(query.value(2)))
+                    j=j-25
+            var.rep.save()
+            rootPath = ".\\informes"
+            cont = 0
+            for file in os.listdir(rootPath):
+                if file.endswith('proveedores.pdf'):
+                    os.startfile("%s/%s" % (rootPath, file))
+                cont = cont + 1
+        except Exception as error:
+            print("Error en report Productos "+ str(error))
+
     def articulo(codigo):
         """
 

@@ -105,3 +105,12 @@ class Products():
             conexion.Conexion.mostrarProducts()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
+
+    def ControlStock():
+        try:
+            Stock= var.ui.EditControldestock.text()
+            conexion.Conexion.ControlStcok(Stock)
+        except Exception as error:
+            print('Error control stock: %s ' % str(error))
+
+

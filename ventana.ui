@@ -42,47 +42,15 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_7">
-    <item row="5" column="6">
-     <widget class="QLabel" name="lblstatus">
+    <item row="0" column="6">
+     <widget class="QLabel" name="lbllogo">
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      <property name="pixmap">
+       <pixmap resource="img/logo.qrc">:/logo/logo.png</pixmap>
       </property>
      </widget>
-    </item>
-    <item row="4" column="7">
-     <spacer name="horizontalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="4" column="0">
-     <spacer name="horizontalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>754</height>
-       </size>
-      </property>
-     </spacer>
     </item>
     <item row="5" column="4">
      <spacer name="verticalSpacer">
@@ -116,15 +84,47 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="6">
-     <widget class="QLabel" name="lbllogo">
-      <property name="text">
-       <string/>
+    <item row="4" column="7">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
-      <property name="pixmap">
-       <pixmap resource="img/logo.qrc">:/logo/logo.png</pixmap>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="5" column="6">
+     <widget class="QLabel" name="lblstatus">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
       </property>
      </widget>
+    </item>
+    <item row="4" column="0">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>754</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item row="4" column="5">
      <widget class="QTabWidget" name="TabWidget">
@@ -153,7 +153,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="tabBarAutoHide">
        <bool>false</bool>
@@ -1311,6 +1311,19 @@
           <normaloff>:/cancelar/cancelar.png</normaloff>:/cancelar/cancelar.png</iconset>
         </property>
        </widget>
+       <widget class="QPushButton" name="BtnDescuento">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>50</y>
+          <width>111</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>10% Descuento</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="panelPro">
        <attribute name="title">
@@ -1380,7 +1393,7 @@
          <rect>
           <x>140</x>
           <y>30</y>
-          <width>398</width>
+          <width>191</width>
           <height>22</height>
          </rect>
         </property>
@@ -1397,8 +1410,8 @@
        <widget class="QLabel" name="lblPrecio">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>30</y>
+          <x>90</x>
+          <y>70</y>
           <width>54</width>
           <height>22</height>
          </rect>
@@ -1425,9 +1438,9 @@
        <widget class="QLineEdit" name="EditPrecio">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>30</y>
-          <width>111</width>
+          <x>140</x>
+          <y>70</y>
+          <width>141</width>
           <height>22</height>
          </rect>
         </property>
@@ -1621,7 +1634,7 @@
        <widget class="QLabel" name="lblStock">
         <property name="geometry">
          <rect>
-          <x>770</x>
+          <x>370</x>
           <y>30</y>
           <width>54</width>
           <height>22</height>
@@ -1649,7 +1662,7 @@
        <widget class="QLineEdit" name="EditStock">
         <property name="geometry">
          <rect>
-          <x>830</x>
+          <x>420</x>
           <y>30</y>
           <width>111</width>
           <height>22</height>
@@ -1665,12 +1678,89 @@
          <string notr="true">background-color: rgb(255, 255, 229);</string>
         </property>
        </widget>
+       <widget class="QLabel" name="lblControlStock">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>70</y>
+          <width>111</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Contol de Stock:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="EditControldestock">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>70</y>
+          <width>111</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 229);</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnControlStock">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>70</y>
+          <width>101</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Controlar Stock</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnReloadProd">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>20</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img/reload.qrc">
+          <normaloff>:/reload/iconreload.png</normaloff>:/reload/iconreload.png</iconset>
+        </property>
+       </widget>
       </widget>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="PanelProv">
        <attribute name="title">
         <string>Proveedores</string>
        </attribute>
-       <widget class="QLabel" name="lblProd_2">
+       <widget class="QLabel" name="lblProve">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -1701,11 +1791,11 @@
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="lblNomeProducto_2">
+       <widget class="QLabel" name="lblNomeProve">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>20</y>
+          <x>160</x>
+          <y>30</y>
           <width>54</width>
           <height>20</height>
          </rect>
@@ -1729,11 +1819,11 @@
          <string>Nombre: </string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="editNomeProducto_2">
+       <widget class="QLineEdit" name="editNomeProv">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>20</y>
+          <x>250</x>
+          <y>30</y>
           <width>161</width>
           <height>22</height>
          </rect>
@@ -1748,11 +1838,11 @@
          <string notr="true">background-color: rgb(255, 255, 229);</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lblPrecio_2">
+       <widget class="QLabel" name="lbltelefonoProv">
         <property name="geometry">
          <rect>
-          <x>400</x>
-          <y>20</y>
+          <x>480</x>
+          <y>30</y>
           <width>54</width>
           <height>22</height>
          </rect>
@@ -1773,62 +1863,15 @@
          </font>
         </property>
         <property name="text">
-         <string>Precio:</string>
+         <string>Telefono</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="EditPrecio_2">
+       <widget class="QLineEdit" name="EditTelProv">
         <property name="geometry">
          <rect>
-          <x>470</x>
-          <y>20</y>
-          <width>111</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 229);</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lblStock_2">
-        <property name="geometry">
-         <rect>
-          <x>620</x>
-          <y>20</y>
-          <width>54</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>MS Shell Dlg 2</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Stock:</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="EditStock_2">
-        <property name="geometry">
-         <rect>
-          <x>710</x>
-          <y>20</y>
-          <width>111</width>
+          <x>580</x>
+          <y>30</y>
+          <width>171</width>
           <height>22</height>
          </rect>
         </property>
@@ -1862,7 +1905,7 @@
           <number>10</number>
          </property>
          <item row="1" column="5">
-          <widget class="QPushButton" name="btnSalirProd_2">
+          <widget class="QPushButton" name="btnSalirProv">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1875,7 +1918,7 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QPushButton" name="btnAltaProd_2">
+          <widget class="QPushButton" name="btnAltaProv">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1888,7 +1931,7 @@
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QPushButton" name="btnLimpiarProd_2">
+          <widget class="QPushButton" name="btnProv">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1901,7 +1944,7 @@
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QPushButton" name="btnBajaProd_2">
+          <widget class="QPushButton" name="btnBajaPrd">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1914,7 +1957,7 @@
           </widget>
          </item>
          <item row="1" column="4">
-          <widget class="QPushButton" name="btnModifProd_2">
+          <widget class="QPushButton" name="btnModifProv">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1928,11 +1971,11 @@
          </item>
         </layout>
        </widget>
-       <widget class="QTableWidget" name="tableProd_2">
+       <widget class="QTableWidget" name="TableProveedores">
         <property name="geometry">
          <rect>
-          <x>-20</x>
-          <y>100</y>
+          <x>-30</x>
+          <y>120</y>
           <width>1071</width>
           <height>472</height>
          </rect>
@@ -2006,7 +2049,7 @@
         </column>
         <column>
          <property name="text">
-          <string>PRECIO</string>
+          <string>TELEFONO</string>
          </property>
          <property name="font">
           <font>
@@ -2050,6 +2093,7 @@
     <addaction name="menubarReportCli"/>
     <addaction name="MenuBarReportFac"/>
     <addaction name="MenubarReportProd"/>
+    <addaction name="actionListado_Proveedores"/>
     <addaction name="separator"/>
     <addaction name="actionImportar_Datos"/>
    </widget>
@@ -2200,6 +2244,11 @@
   <action name="actionImportar_Datos">
    <property name="text">
     <string>Importar Datos</string>
+   </property>
+  </action>
+  <action name="actionListado_Proveedores">
+   <property name="text">
+    <string>Listado Proveedores</string>
    </property>
   </action>
  </widget>
